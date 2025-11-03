@@ -793,6 +793,26 @@ Below are the most commonly used **Array**, **String**, **Date**, and **Math** m
 
 ---
 
+##  Hoisting
+
+### 📚 Overview
+**Hoisting** is a JavaScript mechanism where **variable and function declarations** are moved (or “hoisted”) to the **top of their scope** during the **compilation phase**, before the code executes.
+
+> 🔹 Only **declarations** are hoisted — not **initializations**.
+
+
+### 🧩 Hoisting in Different Cases
+
+| Type | Description | Example |
+|------|--------------|----------|
+| **Variable Hoisting (`var`)** | Variables declared with `var` are hoisted to the top of their scope and initialized as `undefined`. | ```bash console.log(a); // undefined var a = 10; ``` |
+| **Variable (`let` and `const`)** | Variables declared with `let` or `const` are hoisted but **not initialized**, leading to a **Temporal Dead Zone (TDZ)** error if accessed before declaration. | ```bash console.log(x); // ❌ ReferenceError let x = 5; ``` |
+| **Function Declaration** | Function declarations are fully hoisted — both the name and body can be used before the definition. | ```bash greet(); // ✅ "Hello" function greet(){ console.log("Hello"); } ``` |
+| **Function Expression (`var`)** | If a function is defined using a variable (`var`), only the variable declaration is hoisted, not the assignment. | ```bash greet(); // ❌ TypeError var greet = function(){ console.log("Hi"); } ``` |
+| **Arrow Function (`let`/`const`)** | Arrow functions behave like variable expressions and are **not hoisted**. | ```bash greet(); // ❌ ReferenceError const greet = () => console.log("Hi"); ``` |
+
+---
+
 
 
 
