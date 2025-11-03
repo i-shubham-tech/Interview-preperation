@@ -2,7 +2,7 @@
 
 ## 📘 Table of Contents
 
-1. [Introduction](#introduction)
+1. [Introduction](#🧠introduction)
 2. [Normal Feature & ES6 Feature](#normal-feature--es6-feature)
 3. [Variable (let, var, const) & Their Differences](#variable-let-var-const--their-differences)
 4. [Data Type & Type Casting](#data-type--type-casting)
