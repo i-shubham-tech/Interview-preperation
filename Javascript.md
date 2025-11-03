@@ -10,12 +10,13 @@
 6. [Conditional](#conditional)
 7. [Loops](#loops)
 8. [Functions](#functions)
-   - [Normal Function](#normal-function)
-   - [Arrow Function](#arrow-function)
-   - [Pure Function](#pure-function)
-   - [Impure Function](#impure-function)
-   - [Currying Function](#currying-function)
-   - [First Order & Higher Order Function](#first-order--higher-order-function)
+   - [Normal Function](#-normal-function)
+   - [Arrow Function](#-arrow-function)
+   - [Pure Function](#-pure-function)
+   - [Impure Function](#-impure-function)
+   - [First Order Function](#-first-order-function)
+   - [Higher Order Function](#-higher-order-function)
+   - [Currying Function](#-currying-function)
 9. [Built-in Methods](#built-in-methods)
    - [Array Methods](#array-methods)
    - [String Methods](#string-methods)
@@ -642,22 +643,6 @@ console.log(add(5, 10));
 `OUTPUT:15 `
 ```
 
-## 🔹 Arrow Function
-
-### 🧩 Syntax
-```bash
-const functionName = (parameters) => {
-  // code block
-};
-```
-### Example
-```bash
-const add = (a, b) => a + b;
-
-console.log(add(5, 10));
-
-`OUTPUT:15 `
-```
 
 ## 🔹 Pure Function
 A Pure Function always returns the same output for the same input and has no side effects.
@@ -718,7 +703,7 @@ function processUserInput(callback) {
 processUserInput(greet); // Hello Shubham
 ```
 
-## 🔹 CurryingFunction
+## 🔹 Currying Function
 Currying transforms a function that takes multiple arguments into a sequence of functions,
 each taking a single argument.
 
