@@ -452,4 +452,144 @@ let message = (age >= 18) ? "Adult" : "Minor";
 console.log(message);
 ```
 
+---
+
+## Loops
+
+### 📚 Overview
+Loops in JavaScript are used to execute a block of code repeatedly as long as a specified condition is true.
+
+JavaScript supports several types of loops:
+- `for` loop  
+- `while` loop  
+- `do...while` loop  
+- `for...in` loop  
+- `for...of` loop  
+
+### 🔹 for Loop
+
+#### 🧩 Syntax
+```bash
+for (initialization; condition; increment/decrement) {
+  // code block to be executed
+}
+```
+#### Example 
+```
+for (let i = 1; i <= 5; i++) {
+  console.log("Count:", i);
+}
+OUTPUT:1,2,3,4,5
+```
+
+### 🔹 while Loop
+
+#### 🧩 Syntax
+```bash
+while (condition) {
+  // code block to be executed
+}
+```
+#### Example 
+```
+let i = 1;
+
+while (i <= 5) {
+  console.log("Number:", i);
+  i++;
+}
+OUTPUT:1,2,3,4,5
+```
+
+### 🔹 do...while Loop
+
+#### 🧩 Syntax
+```bash
+do {
+  // code block
+} while (condition);
+```
+#### Example 
+```
+let i = 1;
+
+do {
+  console.log("Iteration:", i);
+  i++;
+} while (i <= 5);
+OUTPUT:1,2,3,4,5
+```
+
+### 🔹for...in Loop
+
+#### 🧩 Syntax
+```bash
+for (key in object) {
+  // code to execute
+}
+```
+#### Example 
+```
+const user = { name: "John", age: 25, city: "Delhi" };
+
+for (let key in user) {
+  console.log(key + ":", user[key]);
+OUTPUT:name: John
+```
+
+### 🔹for...of Loop
+
+#### 🧩 Syntax
+```bash
+for (variable of iterable) {
+  // code block
+}
+```
+#### Example 
+```
+const fruits = ["Apple", "Banana", "Mango"];
+
+for (let fruit of fruits) {
+  console.log(fruit);
+}
+OUTPUT:name: Apple,Banana,Mango
+
+```
+
+### 🔹Nested Loops
+
+#### Example 
+```
+for (let i = 1; i <= 3; i++) {
+  for (let j = 1; j <= 2; j++) {
+    console.log(`i=${i}, j=${j}`);
+  }
+}
+
+```
+
+### 🔹break and continue
+
+#### Example (break) 
+```
+for (let i = 1; i <= 5; i++) {
+  if (i === 3) break;
+  console.log(i);
+}
+output- 1,2
+
+```
+
+#### Example (continue) 
+```
+for (let i = 1; i <= 5; i++) {
+  if (i === 3) continue;
+  console.log(i);
+}
+output- 1,2,4,5
+
+```
+
+
+
 
