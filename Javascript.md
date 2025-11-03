@@ -24,7 +24,7 @@
    - [Math Methods](#-math-methods)
 10. [Hoisting](#hoisting)
 11. [Closure](#closure)
-12. [Promise](#promise)
+12. [Promises](#promises)
 13. [Sync, Async & Await](#sync-async--await)
 14. [setTimeout, setInterval & clearInterval](#settimeout-setinterval--clearinterval)
 15. [Debouncing & Throttle](#debouncing--throttle)
