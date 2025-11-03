@@ -76,3 +76,24 @@ Before **ES6 (ECMAScript 2015)**, JavaScript had many limitations such as functi
 
 ---
 
+## Variable (let, var, const) & Their Differences 
+In JavaScript, variables can be declared using **`var`**, **`let`**, or **`const`**.  
+The difference lies mainly in their **scope**, **hoisting behavior**, and **mutability**.
+
+### 📊 Comparison Table
+
+| **Feature** | **var** | **let** | **const** |
+|--------------|----------|----------|------------|
+| **Scope** | Function-scoped | Block-scoped | Block-scoped |
+| **Hoisting** | ✅ Hoisted (initialized as `undefined`) | ✅ Hoisted (in **TDZ** – Temporal Dead Zone) | ✅ Hoisted (in **TDZ**) |
+| **Reassign** | ✅ Allowed | ✅ Allowed | ❌ Not allowed |
+| **Redeclare** | ✅ Allowed | ❌ Not allowed | ❌ Not allowed |
+| **Initialization** | Optional | Optional | Mandatory |
+| **Best Use Case** | Legacy / function-level variables | Mutable variables (loops, reassignments) | Constants / configuration values |
+
+> ⚠️ **TDZ (Temporal Dead Zone):**  
+> A period between variable hoisting and its declaration where the variable exists but **cannot be accessed**.  
+> Accessing it before declaration results in a **ReferenceError**.
+
+---
+
