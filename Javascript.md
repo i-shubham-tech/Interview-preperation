@@ -97,3 +97,87 @@ The difference lies mainly in their **scope**, **hoisting behavior**, and **muta
 
 ---
 
+## Data Type & Type Casting
+
+### 🧩 Overview
+JavaScript data types define the **kind of value** a variable can hold.  
+They are divided into **two main categories:**
+
+### 📘 1. Primitive Data Types
+Primitive types are **immutable** (cannot be changed) and stored **by value**.
+
+| **Type** | **Example** | **Description** |
+|-----------|--------------|-----------------|
+| **String** | `"Hello"` | Sequence of characters |
+| **Number** | `42`, `3.14` | Integer or floating point |
+| **Boolean** | `true`, `false` | Logical value |
+| **Null** | `null` | Intentional empty value |
+| **Undefined** | `undefined` | Declared but not assigned |
+| **BigInt** | `123n` | Represents integers larger than `2^53 - 1` |
+| **Symbol** | `Symbol("id")` | Unique and immutable identifier |
+
+#### 🧠 Example
+```javascript
+let name = "Alice";         // String
+let age = 25;               // Number
+let isLoggedIn = true;      // Boolean
+let emptyValue = null;      // Null
+let notAssigned;            // Undefined
+let bigNumber = 12345678901234567890n; // BigInt
+let uniqueKey = Symbol("id"); // Symbol
+
+console.log(typeof name); // "string"
+```
+
+### 🧱 2. Non-Primitive Data Types
+
+Non-primitives are **mutable** and stored **by reference** (pointing to memory locations).
+
+#### 📦 Types of Non-Primitive Data
+
+| Type | Example | Description |
+|------|----------|-------------|
+| **Object** | `{ name: "John", age: 30 }` | Collection of key-value pairs |
+| **Array** | `[1, 2, 3]` | Ordered list of elements |
+| **Function** | `function greet() {}` | Reusable block of code |
+
+#### 💡 Example
+
+```js
+let user = { name: "Alice", age: 25 }; // Object
+let numbers = [1, 2, 3];               // Array
+function greet() {                     // Function
+  return "Hello!";
+}
+
+console.log(typeof user);    // "object"
+console.log(typeof numbers); // "object"
+console.log(typeof greet);   // "function"
+```
+
+### 🔄 Type Casting (Type Conversion)
+
+JavaScript **automatically** or **manually** converts values between data types.
+
+#### 🧠 Conversion Types
+
+| Conversion Type | Example | Result |
+|------------------|----------|---------|
+| **String → Number** | `Number("10")` | `10` |
+| **Number → String** | `String(20)` | `"20"` |
+| **Any → Boolean** | `Boolean(0)` | `false` |
+| **Implicit (auto)** | `"5" * 2` | `10` |
+| **Explicit (manual)** | `parseInt("100")` | `100` |
+
+#### ⚙️ Example
+
+```js
+let a = "10";
+let num = Number(a);   // Explicit conversion
+let str = String(20);  // Explicit conversion
+let bool = Boolean(0); // false
+
+console.log(typeof num, typeof str, bool); // number string false
+```
+
+
