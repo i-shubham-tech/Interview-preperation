@@ -180,4 +180,150 @@ let bool = Boolean(0); // false
 console.log(typeof num, typeof str, bool); // number string false
 ```
 
+---
+
+# ⚙️ Operators in JavaScript
+
+## 🧩 Overview
+
+Operators are symbols used to perform operations on variables and values.  
+JavaScript supports several types of operators: **Arithmetic**, **Assignment**, **Comparison**, **Logical**, **Bitwise**, **Ternary**, and **Type** operators.
+
+## ➕ 1. Arithmetic Operators
+
+Used to perform mathematical calculations.
+
+| Operator | Description | Example | Result |
+|-----------|--------------|----------|--------|
+| + | Addition | `5 + 2` | `7` |
+| - | Subtraction | `5 - 2` | `3` |
+| * | Multiplication | `5 * 2` | `10` |
+| / | Division | `5 / 2` | `2.5` |
+| % | Modulus (Remainder) | `5 % 2` | `1` |
+| ** | Exponentiation | `2 ** 3` | `8` |
+| ++ | Increment | `let a = 5; a++` | `6` |
+| -- | Decrement | `let a = 5; a--` | `4` |
+
+**Example:**
+```js
+let x = 10, y = 3;
+console.log(x + y);  // 13
+console.log(x ** y); // 1000
+console.log(x % y);  // 1
+```
+
+## 📝 2. Assignment Operators
+
+Used to assign or update values.
+
+| Operator | Example | Same As |
+|-----------|----------|----------|
+| = | `x = 10` | Assign value |
+| += | `x += 5` | `x = x + 5` |
+| -= | `x -= 3` | `x = x - 3` |
+| *= | `x *= 2` | `x = x * 2` |
+| /= | `x /= 4` | `x = x / 4` |
+| %= | `x %= 2` | `x = x % 2` |
+
+**Example:**
+```js
+let a = 5;
+a += 3; // a = 8
+a *= 2; // a = 16
+```
+
+## ⚖️ 3. Comparison Operators
+
+Used to compare two values and return a Boolean (`true` / `false`).
+
+| Operator | Description | Example | Result |
+|-----------|--------------|----------|--------|
+| == | Equal to (value only) | `5 == "5"` | `true` |
+| === | Strict equal (value + type) | `5 === "5"` | `false` |
+| != | Not equal (value only) | `5 != "5"` | `false` |
+| !== | Strict not equal | `5 !== "5"` | `true` |
+| > | Greater than | `10 > 5` | `true` |
+| < | Less than | `10 < 5` | `false` |
+| >= | Greater than or equal | `5 >= 5` | `true` |
+| <= | Less than or equal | `4 <= 3` | `false` |
+
+**Example:**
+```js
+console.log(5 == "5");  // true
+console.log(5 === "5"); // false
+```
+
+## 🔗 4. Logical Operators
+
+Used to combine or invert Boolean expressions.
+
+| Operator | Description | Example | Result |
+|-----------|--------------|----------|--------|
+| && | Logical AND | `true && false` | `false` |
+| \|\| | Logical OR | `true || false` | `true` |
+| ! | Logical NOT | `!true` | `false` |
+
+**Example:**
+```js
+let a = true, b = false;
+console.log(a && b); // false
+console.log(a || b); // true
+console.log(!a);     // false
+```
+
+## ⚙️ 5. Bitwise Operators
+
+Operate on binary (bit-level) representations of numbers.
+
+| Operator | Description | Example | Result |
+|-----------|--------------|----------|--------|
+| & | AND | `5 & 1` | `1` |
+| \| | OR | `5 \| 1` | `5` |
+| ^ | XOR | `5 ^ 1` | `4` |
+| ~ | NOT | `~5` | `-6` |
+| << | Left shift | `5 << 1` | `10` |
+| >> | Right shift | `5 >> 1` | `2` |
+
+**Example:**
+```js
+console.log(5 & 1); // 1
+console.log(5 | 1); // 5
+console.log(5 ^ 1); // 4
+console.log(~5);    // -6
+console.log(5 << 1); // 10
+console.log(5 >> 1); // 2
+```
+
+## ❓ 6. Ternary Operator
+
+A shorthand for `if-else` statements.
+
+| Syntax | Example | Result |
+|---------|----------|--------|
+| `condition ? valueIfTrue : valueIfFalse` | `age >= 18 ? "Adult" : "Minor"` | `"Adult"` |
+
+**Example:**
+```js
+let age = 20;
+let type = age >= 18 ? "Adult" : "Minor";
+console.log(type); // "Adult"
+```
+
+## 🧠 7. Type Operators
+
+Used to check or manipulate data types in JavaScript.
+
+| Operator | Description | Example | Result |
+|-----------|--------------|----------|--------|
+| typeof | Returns the variable type | `typeof "Hello"` | `"string"` |
+| instanceof | Checks if an object is an instance of a class | `arr instanceof Array` | `true` |
+
+**Example:**
+```js
+let arr = [1, 2, 3];
+console.log(typeof arr);           // "object"
+console.log(arr instanceof Array); // true
+```
+
+
 
