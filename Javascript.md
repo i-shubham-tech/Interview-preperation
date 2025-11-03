@@ -8,7 +8,7 @@
 4. [Data Type & Type Casting](#data-type--type-casting)
 5. [Operator](#operator)
 6. [Conditional](#conditional)
-7. [Loop](#loop)
+7. [Loops](#loops)
 8. [Function](#function)
    - [Normal Function](#normal-function)
    - [Arrow Function](#arrow-function)
