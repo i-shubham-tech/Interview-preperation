@@ -182,14 +182,14 @@ console.log(typeof num, typeof str, bool); // number string false
 
 ---
 
-# ⚙️ Operators in JavaScript
+## Operator
 
-## 🧩 Overview
+### 🧩 Overview
 
 Operators are symbols used to perform operations on variables and values.  
 JavaScript supports several types of operators: **Arithmetic**, **Assignment**, **Comparison**, **Logical**, **Bitwise**, **Ternary**, and **Type** operators.
 
-## ➕ 1. Arithmetic Operators
+### ➕ 1. Arithmetic Operators
 
 Used to perform mathematical calculations.
 
@@ -212,7 +212,7 @@ console.log(x ** y); // 1000
 console.log(x % y);  // 1
 ```
 
-## 📝 2. Assignment Operators
+### 📝 2. Assignment Operators
 
 Used to assign or update values.
 
@@ -232,7 +232,7 @@ a += 3; // a = 8
 a *= 2; // a = 16
 ```
 
-## ⚖️ 3. Comparison Operators
+### ⚖️ 3. Comparison Operators
 
 Used to compare two values and return a Boolean (`true` / `false`).
 
@@ -253,7 +253,7 @@ console.log(5 == "5");  // true
 console.log(5 === "5"); // false
 ```
 
-## 🔗 4. Logical Operators
+### 🔗 4. Logical Operators
 
 Used to combine or invert Boolean expressions.
 
@@ -271,7 +271,7 @@ console.log(a || b); // true
 console.log(!a);     // false
 ```
 
-## ⚙️ 5. Bitwise Operators
+### ⚙️ 5. Bitwise Operators
 
 Operate on binary (bit-level) representations of numbers.
 
@@ -294,7 +294,7 @@ console.log(5 << 1); // 10
 console.log(5 >> 1); // 2
 ```
 
-## ❓ 6. Ternary Operator
+### ❓ 6. Ternary Operator
 
 A shorthand for `if-else` statements.
 
@@ -309,7 +309,7 @@ let type = age >= 18 ? "Adult" : "Minor";
 console.log(type); // "Adult"
 ```
 
-## 🧠 7. Type Operators
+### 🧠 7. Type Operators
 
 Used to check or manipulate data types in JavaScript.
 
@@ -325,5 +325,131 @@ console.log(typeof arr);           // "object"
 console.log(arr instanceof Array); // true
 ```
 
+---
+
+## Conditional
+
+### 📚 Overview
+Conditional statements in JavaScript are used to perform different actions based on different conditions.  
+They help control the flow of execution in your program.
+
+JavaScript supports the following conditional statements:
+- `if` statement  
+- `if...else` statement  
+- `switch` statement  
+- `ternary (?:)` operator  
+
+### 🔹 if Statement
+
+#### 🧩 Syntax
+```javascript
+if (condition) {
+  // code to execute if condition is true
+}
+```
+#### Example 
+```
+let age = 18;
+
+if (age >= 18) {
+  console.log("You are eligible to vote.");
+}
+```
+
+### 🔹 if-else Statement
+
+#### 🧩 Syntax
+```javascript
+if (condition) {
+  // code executes if condition is true
+} else {
+  // code executes if condition is false
+}
+```
+#### Example 
+```
+let isRaining = true;
+
+if (isRaining) {
+  console.log("Take an umbrella!");
+} else {
+  console.log("Enjoy the sunshine!");
+}
+```
+
+### 🔹 if-else if Ladder
+
+#### 🧩 Syntax
+```javascript
+if (condition1) {
+  // code executes if condition1 is true
+} else if (condition2) {
+  // code executes if condition2 is true
+} else {
+  // executes if none of the above are true
+}
+```
+#### Example 
+```
+let marks = 85;
+
+if (marks >= 90) {
+  console.log("Grade: A");
+} else if (marks >= 75) {
+  console.log("Grade: B");
+} else {
+  console.log("Grade: C");
+}
+```
+
+### 🔹 switch Statement
+
+#### 🧩 Syntax
+```javascript
+switch (expression) {
+  case value1:
+    // code block
+    break;
+
+  case value2:
+    // code block
+    break;
+
+  default:
+    // code block
+}
+```
+#### Example 
+```
+let day = "Tuesday";
+
+switch (day) {
+  case "Monday":
+    console.log("Start of the week");
+    break;
+  case "Tuesday":
+    console.log("Second day of the week");
+    break;
+  case "Friday":
+    console.log("Weekend is near!");
+    break;
+  default:
+    console.log("Just another day");
+}
+```
+
+### 🔹Ternary Operator (?:)
+
+#### 🧩 Syntax
+```javascript
+condition ? expressionIfTrue : expressionIfFalse;
+```
+#### Example 
+```
+let age = 20;
+let message = (age >= 18) ? "Adult" : "Minor";
+
+console.log(message);
+```
 
 
