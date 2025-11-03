@@ -910,9 +910,91 @@ getData()
   .catch(err => console.error(err))
   .finally(() => console.log("Operation finished"));
 ```
+---
+
+## JavaScript — Sync, Async & Await
+
+### 📚 Overview
+JavaScript executes code **synchronously by default**, meaning **one line at a time** in sequence.  
+However, real-world applications need to handle **asynchronous tasks** like:
+- API calls
+- File reads
+- Timers
+- Database queries
+
+To handle this efficiently, JavaScript uses **Asynchronous Programming**, mainly via:
+- **Callbacks**
+- **Promises**
+- **Async/Await**
+  
+
+### 🧩 1. Synchronous JavaScript
+
+| Concept | Description |
+|----------|--------------|
+| **Definition** | Executes one statement **at a time** — blocking the next line until the current one finishes. |
+| **Execution** | Line-by-line (single-threaded). |
+| **Example Use Case** | Basic arithmetic, simple logic, synchronous loops. |
+
+### 🧱 Example
+```bash
+console.log("Start");
+console.log("Processing...");
+console.log("End");
+```
+
+### 🧩 2. Asynchronous JavaScript
+
+| Concept | Description |
+|----------|--------------|
+| **Definition** | Executes long-running operations without blocking the main thread. |
+| **Execution** | Uses Web APIs, Event Loop, and Callback Queue. |
+| **Example Use Case** | Fetching data, timers, file I/O, animations. |
+
+### 🧱 Example
+```bash
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Async Task Complete");
+}, 2000);
+
+console.log("End");
+
+```
+
+### 🧩 3. Async & Await (Modern Asynchronous Handling)
+
+| Concept | Description |
+|----------|--------------|
+| **Async Function**  | Declared with async keyword — always returns a Promise. |
+| **Await Keyword** | Pauses execution until the Promise resolves. |
+| **Purpose** | Makes async code look synchronous and readable. |
+
+### 🧱 Example
+```bash
+function fetchData() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve("Data Loaded"), 2000);
+  });
+}
+
+async function getData() {
+  console.log("Start Fetching...");
+  const result = await fetchData();
+  console.log(result);
+  console.log("End");
+}
+
+getData();
 
 
+```
 
-
-
+```
+Start Fetching...
+(Waits 2 seconds)
+Data Loaded
+End
+```
 
