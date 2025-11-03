@@ -34,3 +34,25 @@
 20. [XSS Attack](#xss-attack)
 21. [Service Worker](#service-worker)
 
+---
+
+## 🧠 Introduction
+
+**JavaScript (JS)** is a **high-level**, **interpreted**, and **dynamic programming language** primarily used for creating interactive web pages.  
+It runs in the browser and  also run on the **server side** using environments like **Node.js**.
+
+### ⚙️ Core Characteristics
+
+| **Feature** | **Description** |
+|--------------|----------------|
+| **Single-Threaded** | JavaScript executes one task at a time in a single call stack. It handles multiple tasks through asynchronous operations (like callbacks, promises, and async/await). |
+| **Event-Driven** | JavaScript reacts to events (like clicks, inputs, or server responses) via the **event loop**, which manages queued tasks efficiently. |
+| **Non-Blocking I/O** | Instead of waiting for a task (like reading a file) to complete, JavaScript continues executing other code and handles the result later — improving performance. |
+| **Interpreted** | Code is executed line by line by the JavaScript engine (like V8 in Chrome), without the need for pre-compilation. |
+| **Prototype-Based** | Objects can inherit directly from other objects — enabling flexible and reusable code structures. |
+| **Dynamically Typed** | Variable types are determined at runtime, meaning a variable can hold different types of data at different times. |
+| **Cross-Platform** | Runs on browsers, servers, desktops, and even IoT devices — making it one of the most versatile languages. |
+
+---
+
+
