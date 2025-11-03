@@ -18,10 +18,10 @@
    - [Higher Order Function](#-higher-order-function)
    - [Currying Function](#-currying-function)
 9. [Built-in Methods](#built-in-methods)
-   - [Array Methods](#array-methods)
-   - [String Methods](#string-methods)
-   - [Date Methods](#date-methods)
-   - [Math Methods](#math-methods)
+   - [Array Methods](#-array-methods)
+   - [String Methods](#-string-methods)
+   - [Date Methods](#-date-methods)
+   - [Math Methods](#-math-methods)
 10. [Hoisting](#hoisting)
 11. [Closure](#closure)
 12. [Promise](#promise)
@@ -721,6 +721,78 @@ console.log(multiply(2)(3)(4)); // 25
 
 
 ```
+
+##  Built-in Methods
+
+## 📚 Overview
+JavaScript provides many **built-in methods** that help developers manipulate data easily.  
+Below are the most commonly used **Array**, **String**, **Date**, and **Math** methods — neatly formatted for quick reference.
+
+## 🔹 Array Methods
+
+| Method | Description | Example |
+|--------|--------------|----------|
+| `push()` | Adds one or more elements to the end of an array. | ```bash const fruits = ["Apple"]; fruits.push("Mango"); console.log(fruits); // ["Apple","Mango"] ``` |
+| `pop()` | Removes the last element from an array. | ```bash const fruits = ["Apple","Mango"]; fruits.pop(); console.log(fruits); // ["Apple"] ``` |
+| `shift()` | Removes the first element of an array. | ```bash const fruits = ["Apple","Banana"]; fruits.shift(); console.log(fruits); // ["Banana"] ``` |
+| `unshift()` | Adds one or more elements to the beginning. | ```bash const fruits = ["Banana"]; fruits.unshift("Apple"); console.log(fruits); // ["Apple","Banana"] ``` |
+| `slice()` | Extracts a section of an array without modifying it. | ```bash const arr = [1,2,3,4]; console.log(arr.slice(1,3)); // [2,3] ``` |
+| `splice()` | Adds/removes items from an array. | ```bash const arr = ["A","B","D"]; arr.splice(2,0,"C"); console.log(arr); // ["A","B","C","D"] ``` |
+| `map()` | Creates a new array by applying a function to each element. | ```bash const nums=[1,2,3]; console.log(nums.map(x=>x*2)); // [2,4,6] ``` |
+| `filter()` | Creates a new array with elements that pass the test. | ```bash const nums=[1,2,3,4]; console.log(nums.filter(x=>x%2===0)); // [2,4] ``` |
+| `reduce()` | Reduces an array to a single value. | ```bash const nums=[1,2,3]; console.log(nums.reduce((a,b)=>a+b)); // 6 ``` |
+| `forEach()` | Executes a function for each array element. | ```bash ["A","B","C"].forEach(x=>console.log(x)); ``` |
+
+
+## 🔹 String Methods
+
+| Method | Description | Example |
+|--------|--------------|----------|
+| `length` | Returns the length of the string. | ```bash const str="JavaScript"; console.log(str.length); // 10 ``` |
+| `toUpperCase()` | Converts to uppercase. | ```bash console.log("js".toUpperCase()); // "JS" ``` |
+| `toLowerCase()` | Converts to lowercase. | ```bash console.log("JS".toLowerCase()); // "js" ``` |
+| `includes()` | Checks if string contains a substring. | ```bash console.log("Hello JS".includes("JS")); // true ``` |
+| `indexOf()` | Returns index of the first occurrence. | ```bash console.log("JavaScript".indexOf("Script")); // 4 ``` |
+| `slice()` | Extracts part of a string. | ```bash console.log("JavaScript".slice(0,4)); // "Java" ``` |
+| `replace()` | Replaces part of the string. | ```bash console.log("I like JS".replace("JS","JavaScript")); ``` |
+| `split()` | Splits string into an array. | ```bash console.log("A,B,C".split(",")); // ["A","B","C"] ``` |
+| `trim()` | Removes whitespace from both ends. | ```bash console.log(" JS ".trim()); // "JS" ``` |
+| `charAt()` | Returns the character at given index. | ```bash console.log("Hello".charAt(1)); // "e" ``` |
+
+
+## 🔹 Date Methods
+
+| Method | Description | Example |
+|--------|--------------|----------|
+| `new Date()` | Creates a new date object. | ```bash const today=new Date(); console.log(today); ``` |
+| `getFullYear()` | Returns the 4-digit year. | ```bash console.log(new Date().getFullYear()); ``` |
+| `getMonth()` | Returns month (0–11). | ```bash console.log(new Date().getMonth()+1); ``` |
+| `getDate()` | Returns day of the month. | ```bash console.log(new Date().getDate()); ``` |
+| `getDay()` | Returns day of the week (0–6). | ```bash console.log(new Date().getDay()); ``` |
+| `getHours()` | Returns the hour (0–23). | ```bash console.log(new Date().getHours()); ``` |
+| `getMinutes()` | Returns the minutes (0–59). | ```bash console.log(new Date().getMinutes()); ``` |
+| `getSeconds()` | Returns the seconds (0–59). | ```bash console.log(new Date().getSeconds()); ``` |
+| `setFullYear()` | Sets the full year. | ```bash const d=new Date(); d.setFullYear(2030); console.log(d.getFullYear()); ``` |
+| `toLocaleDateString()` | Returns a locale-based date string. | ```bash console.log(new Date().toLocaleDateString()); ``` |
+
+
+## 🔹 Math Methods
+
+| Method | Description | Example |
+|--------|--------------|----------|
+| `Math.PI` | Returns π (3.14159…). | ```bash console.log(Math.PI); ``` |
+| `Math.sqrt(x)` | Returns the square root of x. | ```bash console.log(Math.sqrt(16)); // 4 ``` |
+| `Math.pow(x,y)` | Returns x raised to y. | ```bash console.log(Math.pow(2,3)); // 8 ``` |
+| `Math.floor(x)` | Rounds down to nearest integer. | ```bash console.log(Math.floor(4.9)); // 4 ``` |
+| `Math.ceil(x)` | Rounds up to nearest integer. | ```bash console.log(Math.ceil(4.1)); // 5 ``` |
+| `Math.round(x)` | Rounds to nearest integer. | ```bash console.log(Math.round(4.5)); // 5 ``` |
+| `Math.abs(x)` | Returns absolute value. | ```bash console.log(Math.abs(-7)); // 7 ``` |
+| `Math.max(...values)` | Returns largest number. | ```bash console.log(Math.max(1,5,3)); // 5 ``` |
+| `Math.min(...values)` | Returns smallest number. | ```bash console.log(Math.min(1,5,3)); // 1 ``` |
+| `Math.random()` | Returns random number (0–1). | ```bash console.log(Math.random()); ``` |
+
+---
+
 
 
 
