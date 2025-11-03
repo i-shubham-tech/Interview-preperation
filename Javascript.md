@@ -813,6 +813,47 @@ Below are the most commonly used **Array**, **String**, **Date**, and **Math** m
 
 ---
 
+## Closure
+
+### 📚 Overview
+A **closure** is created when a **function retains access to variables** from its **outer (lexical) scope**,  
+even after that outer function has **returned**.
+
+> 💡 Closures allow **data privacy**, **state preservation**, and **function factories** in JavaScript.
+
+---
+
+### 🧩 Key Concept
+
+| Term | Description |
+|------|--------------|
+| **Lexical Scope** | The scope determined by the **position** of functions in the source code. |
+| **Closure** | A function that **remembers** variables from its outer scope, even after the outer function finishes execution. |
+
+---
+
+### ⚙️ Basic Example
+
+```bash
+function outer() {
+  let counter = 0;
+
+  function inner() {
+    counter++;
+    console.log(counter);
+  }
+
+  return inner;
+}
+
+const increment = outer(); 
+increment(); // 1
+increment(); // 2
+increment(); // 3
+```
+---
+
+
 
 
 
