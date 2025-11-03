@@ -55,4 +55,24 @@ It runs in the browser and  also run on the **server side** using environments l
 
 ---
 
+## Normal Feature & ES6 Feature
+
+### 🧩 Overview
+Before **ES6 (ECMAScript 2015)**, JavaScript had many limitations such as function-based scoping, callback hell, and lack of modularity.  
+**ES6+** introduced modern features that made JavaScript more powerful, readable, and developer-friendly.
+
+### 🔍 Comparison Table
+
+| **Feature** | **Pre-ES6** | **ES6+** |
+|--------------|--------------|-----------|
+| **Variable Declaration** | `var` | `let`, `const` |
+| **Functions** | Normal functions | Arrow functions, Default parameters |
+| **Strings** | Concatenation using `+` | Template literals using backticks `` ` `` |
+| **Loops** | `for`, `while` | `for...of`, `for...in` |
+| **Modules** | No module system | `import`, `export` |
+| **Objects** | Manual key-value creation | Object shorthand, destructuring |
+| **Classes** | Prototype-based functions | `class` syntax |
+| **Promises** | Callback-based async handling | `Promise`, `async/await` |
+
+---
 
