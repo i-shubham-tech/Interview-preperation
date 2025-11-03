@@ -853,6 +853,64 @@ increment(); // 3
 ```
 ---
 
+## Promises
+
+### 📚 Overview
+A **Promise** in JavaScript is an **object** that represents the eventual **completion or failure** of an **asynchronous operation**.
+
+> 💡 Promises make asynchronous code easier to manage and read compared to callback-based code.
+
+### 🧩 Why Promises?
+| Problem | Example | Issue |
+|----------|----------|--------|
+| **Callback Hell** | ```bash doTask1(() => { doTask2(() => { doTask3(() => { console.log("Done!"); }); }); }); ``` | Code becomes nested and hard to manage |
+| ✅ **With Promise** | ```bash doTask1().then(doTask2).then(doTask3).then(() => console.log("Done!")); ``` | Clean, readable, chainable syntax |
+
+### 🧠 Promise States
+| State | Description | Triggered When |
+|-------|-------------|----------------|
+| **Pending** | Initial state, waiting for completion. | ```Promise just created``` |
+|  **Fulfilled** | Operation completed successfully.| ```resolve() is called``` |
+|  **Rejected** | Operation failed. | ```reject() is called``` |
+
+
+### ⚙️ Promise Syntax
+
+```bash
+const promise = new Promise((resolve, reject) => {
+  // Perform some async work
+  const success = true;
+
+  if (success) {
+    resolve("Task completed successfully!");
+  } else {
+    reject("Task failed!");
+  }
+});
+
+promise
+  .then(result => console.log(result))     // Handles success
+  .catch(error => console.log(error))      // Handles failure
+  .finally(() => console.log("Done!"));    // Runs always
+```
+
+### Example
+
+```bash
+function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Data fetched successfully!");
+    }, 1000);
+  });
+}
+
+getData()
+  .then(data => console.log(data))
+  .catch(err => console.error(err))
+  .finally(() => console.log("Operation finished"));
+```
+
 
 
 
