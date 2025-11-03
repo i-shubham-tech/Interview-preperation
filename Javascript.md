@@ -9,7 +9,7 @@
 5. [Operator](#operator)
 6. [Conditional](#conditional)
 7. [Loops](#loops)
-8. [Function](#function)
+8. [Functions](#functions)
    - [Normal Function](#normal-function)
    - [Arrow Function](#arrow-function)
    - [Pure Function](#pure-function)
@@ -587,6 +587,153 @@ for (let i = 1; i <= 5; i++) {
   console.log(i);
 }
 output- 1,2,4,5
+
+```
+
+## Functions
+
+## 📚 Overview
+Functions in JavaScript are blocks of code designed to perform a particular task.  
+They help in **code reusability**, **modularity**, and **clean structure**.
+
+JavaScript functions can be:
+- Normal Function  
+- Arrow Function  
+- Pure Function  
+- Impure Function   
+- First Order Function  
+- Higher Order Function
+- Currying Function 
+
+## 🔹 Normal Function
+
+### 🧩 Syntax
+```bash
+function functionName(parameters) {
+  // code to execute
+  return value;
+}
+```
+### Example
+```bash
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+
+console.log(greet("Shubham"));
+
+`OUTPUT: Hello, Shubham! `
+```
+
+## 🔹 Arrow Function
+
+### 🧩 Syntax
+```bash
+const functionName = (parameters) => {
+  // code block
+};
+```
+### Example
+```bash
+const add = (a, b) => a + b;
+
+console.log(add(5, 10));
+
+`OUTPUT:15 `
+```
+
+## 🔹 Arrow Function
+
+### 🧩 Syntax
+```bash
+const functionName = (parameters) => {
+  // code block
+};
+```
+### Example
+```bash
+const add = (a, b) => a + b;
+
+console.log(add(5, 10));
+
+`OUTPUT:15 `
+```
+
+## 🔹 Pure Function
+A Pure Function always returns the same output for the same input and has no side effects.
+
+### Example
+```bash
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3));  // Always 5
+console.log(add(2, 3));  // Always 5 again
+```
+
+## 🔹 Impure Function
+An Impure Function may change external variables or depend on external state.
+
+### Example
+```bash
+let counter = 0;
+
+function increment() {
+  counter++;
+  return counter;
+}
+
+console.log(increment()); //1
+console.log(increment()); //2
+```
+
+## 🔹 First Order Function
+A First Order Function does not take another function as an argument and does not return a function.
+
+### Example
+```bash
+function square(num) {
+  return num * num;
+}
+
+console.log(square(5)); //25
+
+```
+
+## 🔹 Higher Order Function
+A Higher Order Function takes one or more functions as arguments or returns a function.
+
+### Example
+```bash
+function greet(name) {
+  return "Hello, " + name;
+}
+
+function processUserInput(callback) {
+  let name = "Shubham";
+  console.log(callback(name));
+}
+
+processUserInput(greet); // Hello Shubham
+```
+
+## 🔹 CurryingFunction
+Currying transforms a function that takes multiple arguments into a sequence of functions,
+each taking a single argument.
+
+### Example
+```bash
+function multiply(a) {
+  return function(b) {
+    return function(c) {
+      return a * b * c;
+    };
+  };
+}
+
+console.log(multiply(2)(3)(4)); // 25
+
 
 ```
 
