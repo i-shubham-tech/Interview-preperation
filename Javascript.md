@@ -912,7 +912,7 @@ getData()
 ```
 ---
 
-## JavaScript — Sync, Async & Await
+## Sync, Async & Await
 
 ### 📚 Overview
 JavaScript executes code **synchronously by default**, meaning **one line at a time** in sequence.  
