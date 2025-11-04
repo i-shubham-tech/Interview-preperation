@@ -1172,5 +1172,50 @@ window.addEventListener('scroll', handleScroll);
 ```
 ---
 
+##  Lazy Loading
 
+### 📚 Overview
+**Lazy Loading** is a **performance optimization technique** that delays the **loading or execution** of resources (like images, scripts, or components) until **they are actually needed**.
+
+> ⚙️ Goal: To **improve page load speed**, **reduce initial load time**, and **save bandwidth**.
+
+### 🧩 Why Lazy Loading?
+
+| Problem | Solution |
+|----------|-----------|
+| All images/scripts/components load at once, even if not visible | Load them only when needed (on-demand) |
+| Slow initial page rendering | Faster initial rendering |
+| Unnecessary data usage | Loads only relevant data |
+
+
+### 🧠 How Lazy Loading Works
+1. The resource (image/component) is **not loaded initially**.  
+2. As the user **scrolls** or **interacts**, the resource is **loaded dynamically**.  
+3. JavaScript detects when an element is **in or near the viewport** (visible area).
+4. 
+### 🧱 Example 1 — Lazy Loading Images (Manual Approach)
+
+```bash
+<img data-src="image.jpg" alt="Nature" class="lazy-image">
+
+<script>
+  const images = document.querySelectorAll('.lazy-image');
+
+  const loadImage = (image) => {
+    image.src = image.getAttribute('data-src');
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        loadImage(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  images.forEach(img => observer.observe(img));
+</script>
+```
+---
 
