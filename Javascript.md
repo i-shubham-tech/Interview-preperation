@@ -26,7 +26,7 @@
 11. [Closure](#closure)
 12. [Promises](#promises)
 13. [Sync, Async & Await](#sync-async--await)
-14. [setTimeout, setInterval & clearInterval](#settimeout-setinterval--clearinterval)
+14. [Timing Functions](#timing-functions)
 15. [Debouncing & Throttle](#debouncing--throttle)
 16. [Lazy Loading](#lazy-loading)
 17. [Memoization](#memoization)
@@ -997,4 +997,92 @@ Start Fetching...
 Data Loaded
 End
 ```
+---
+## JavaScript Timing Functions  
+### `setTimeout`, `setInterval`, and `clearInterval`
 
+## 📚 Overview
+JavaScript provides **timing functions** that let you **schedule code execution** after a certain delay or repeatedly at specific intervals.  
+These are **asynchronous** functions handled by the **browser’s Web APIs** (or Node.js event loop).
+
+## 🧩 1. `setTimeout()`
+
+| Feature | Description |
+|----------|--------------|
+| **Purpose** | Executes a function **once** after a specified delay (in milliseconds). |
+| **Syntax** | `setTimeout(callback, delay, ...args)` |
+| **Return Value** | A unique **timeout ID** (used to cancel it later). |
+
+### 🧱 Example — Basic Usage
+```bash
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Executed after 2 seconds");
+}, 2000);
+
+console.log("End");
+```
+```
+**output**
+Start
+End
+Executed after 2 seconds
+```
+## 🧩 2. `setInterval()`
+
+| Feature | Description |
+|----------|--------------|
+| **Purpose** | Executes a function repeatedly at specified intervals.. |
+| **Syntax** | `setInterval(callback, delay, ...args)` |
+| **Return Value** | A unique interval ID (used to stop it using clearInterval).. |
+
+### 🧱 Example — Basic Usage
+```bash
+let count = 1;
+
+const intervalId = setInterval(() => {
+  console.log(`Count: ${count}`);
+  count++;
+}, 1000);
+```
+```
+**output**
+Start
+End
+Executed after 2 seconds
+```
+
+## 🧩 3. `clearInterval()`
+
+| Feature | Description |
+|----------|--------------|
+| **Purpose** | Stops a running interval created by setInterval()... |
+| **Syntax** | `clearInterval(intervalID)` |
+
+
+### 🧱 Example — Basic Usage
+```bash
+let count = 1;
+
+const intervalId = setInterval(() => {
+  console.log(`Count: ${count}`);
+  count++;
+
+  if (count > 5) {
+    clearInterval(intervalId);
+    console.log("Stopped!");
+  }
+}, 1000);
+```
+```
+**output**
+Output:
+
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+Count: 5
+Stopped!
+```
