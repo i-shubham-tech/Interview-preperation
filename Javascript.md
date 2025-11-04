@@ -998,7 +998,7 @@ Data Loaded
 End
 ```
 ---
-## JavaScript Timing Functions  
+## Timing Functions  
 ### `setTimeout`, `setInterval`, and `clearInterval`
 
 ## 📚 Overview
