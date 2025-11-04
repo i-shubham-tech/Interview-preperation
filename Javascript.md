@@ -1358,3 +1358,48 @@ console.log(decoded);
 ```
 ---
 
+## XSS Attack
+
+> **Short:** Cross-Site Scripting (XSS) is a class of web vulnerability where untrusted input is injected into pages and executed by victims’ browsers. This guide explains types, safe (local) examples, detection, and strong prevention practices. **Only test in environments you own or have explicit permission for.**
+
+---
+
+### 📚 Overview
+XSS happens when an application includes user-supplied data in a webpage **without proper validation, escaping, or sanitization**, allowing attackers to run arbitrary JavaScript in other users’ browsers. Consequences include session theft, account takeover, phishing, and data exfiltration.
+
+---
+
+### 🔺 Types of XSS
+
+| Type | Where it happens | Typical flow |
+|------|------------------|--------------|
+| **Reflected XSS** | Server responds with attacker-supplied input (URL/form) | Victim clicks crafted link → payload reflected → executes |
+| **Stored XSS** | Payload persisted (DB, comments, profile) | Attacker saves payload → other users view page → executes |
+| **DOM-based XSS** | Vulnerable client-side JS manipulates DOM using untrusted data | Browser JS reads location/hash or element content and injects into DOM → executes |
+
+---
+
+### ⚠️ Safe testing warning
+Only run vulnerable examples **locally** or in a lab (e.g., OWASP Juice Shop, WebGoat) or on systems you own/are authorized to test. **Never** attack other people's websites.
+
+---
+
+### 🧪 Minimal vulnerable examples (local testing only)
+
+#### 1) Reflected XSS (vulnerable) — Express example
+```bash
+# server.js (run locally only)
+const express = require('express');
+const app = express();
+
+app.get('/search', (req, res) => {
+  const q = req.query.q || '';
+  // VULNERABLE: directly inserts user input into HTML
+  res.send(`<html><body>
+    <h1>Search results for: ${q}</h1>
+  </body></html>`);
+});
+
+app.listen(3000, () => console.log('listening on 3000'));
+```
+---
