@@ -1297,3 +1297,64 @@ document.getElementById("loadBtn").addEventListener("click", async () => {
 ```
 ---
 
+## URL Encoding & Decoding
+
+### 📚 Overview
+**URL Encoding** and **Decoding** are techniques used to safely transmit data in URLs.  
+URLs can only contain a limited set of ASCII characters, so other characters (like spaces, `#`, `%`, `@`, etc.) are **encoded** into a safe format.
+
+> 💡 Encoding replaces unsafe characters with `%` followed by hexadecimal values.
+
+---
+
+### 🧩 Key Concepts
+
+| Concept | Description |
+|----------|--------------|
+| **URL Encoding** | Converts special characters into a format that can be safely transmitted in URLs. |
+| **URL Decoding** | Converts encoded URL strings back to their original readable form. |
+| **Percent-Encoding** | Replaces characters using `%` followed by two hexadecimal digits (e.g., space → `%20`). |
+
+---
+
+### ⚙️ Common Encoding Examples
+
+| Character | Encoded Value | Meaning |
+|------------|----------------|----------|
+| Space | `%20` | Blank space |
+| `#` | `%23` | Hash |
+| `@` | `%40` | At sign |
+| `/` | `%2F` | Forward slash |
+| `:` | `%3A` | Colon |
+| `?` | `%3F` | Question mark |
+| `&` | `%26` | Ampersand |
+| `=` | `%3D` | Equal sign |
+
+---
+
+### 🧱 JavaScript Encoding & Decoding Functions
+
+| Function | Description |
+|-----------|--------------|
+| `encodeURI()` | Encodes a full URI (does not encode `:`, `/`, `?`, `#`, `&`). |
+| `encodeURIComponent()` | Encodes individual URI components (encodes all special characters). |
+| `decodeURI()` | Decodes a full encoded URI string. |
+| `decodeURIComponent()` | Decodes encoded URI components. |
+
+---
+
+### 🧠 Example — Using `encodeURI()` and `decodeURI()`
+
+```bash
+const url = "https://example.com/search?query=hello world&category=books";
+
+const encoded = encodeURI(url);
+console.log(encoded);
+// Output: https://example.com/search?query=hello%20world&category=books
+
+const decoded = decodeURI(encoded);
+console.log(decoded);
+// Output: https://example.com/search?query=hello world&category=books
+```
+---
+
