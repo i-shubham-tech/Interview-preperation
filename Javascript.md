@@ -1227,7 +1227,6 @@ by **caching the results** of expensive function calls and **returning the cache
 
 > ⚙️ It’s a **specific form of caching** that stores results based on **function arguments**.
 
----
 
 ### 🧩 Why Memoization?
 
@@ -1237,7 +1236,6 @@ by **caching the results** of expensive function calls and **returning the cache
 | Recalculations for the same input | Fetch from cache instantly |
 | High computational load | Reduce time complexity by avoiding repetition |
 
----
 
 ### 🧠 How Memoization Works
 
@@ -1246,7 +1244,6 @@ by **caching the results** of expensive function calls and **returning the cache
 3. If found → return cached result.  
 4. If not → compute result, store it in cache, and return it.
 
----
 
 ### 🧱 Example 1 — Without Memoization
 
@@ -1258,6 +1255,45 @@ function slowSquare(n) {
 
 console.log(slowSquare(5)); // Calculating... → 25
 console.log(slowSquare(5)); // Calculating... → 25 (recomputed)
+```
+---
+##  Code Splitting
+
+### 📚 Overview
+**Code Splitting** is a performance optimization technique that allows JavaScript applications to **split large bundles** into smaller chunks that are **loaded on demand**.  
+It helps improve **page load time**, **performance**, and **user experience** by downloading only what’s necessary.
+
+> 💡 In simple terms: *Load code only when you need it!*
+
+
+### ⚙️ Why Use Code Splitting?
+
+| Benefit | Description |
+|----------|--------------|
+| 🚀 Faster Load Time | Reduces initial bundle size — only critical code loads first. |
+| 🧠 Better Performance | Non-essential modules load asynchronously when required. |
+| 🔄 Efficient Caching | Only changed chunks are re-fetched, not the entire app. |
+| ⚡ Ideal for SPA | Helps single-page applications load pages faster. |
+
+
+### 🧱 How It Works
+
+When you bundle your app (e.g., using **Webpack**, **Vite**, or **Parcel**), you can instruct the bundler to **split** your JavaScript files into separate bundles.
+
+These bundles are **lazy-loaded** or **dynamically imported** when certain routes or features are used.
+
+
+### 📘 Example — Dynamic Import
+
+```bash
+// main.js
+console.log("Main file loaded");
+
+// Dynamically import only when needed
+document.getElementById("loadBtn").addEventListener("click", async () => {
+  const module = await import("./math.js");
+  console.log(module.add(5, 10)); // Loads math.js only when button clicked
+});
 ```
 ---
 
