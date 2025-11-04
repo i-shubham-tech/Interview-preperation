@@ -1362,12 +1362,8 @@ console.log(decoded);
 
 > **Short:** Cross-Site Scripting (XSS) is a class of web vulnerability where untrusted input is injected into pages and executed by victims’ browsers. This guide explains types, safe (local) examples, detection, and strong prevention practices. **Only test in environments you own or have explicit permission for.**
 
----
-
 ### 📚 Overview
 XSS happens when an application includes user-supplied data in a webpage **without proper validation, escaping, or sanitization**, allowing attackers to run arbitrary JavaScript in other users’ browsers. Consequences include session theft, account takeover, phishing, and data exfiltration.
-
----
 
 ### 🔺 Types of XSS
 
@@ -1377,12 +1373,9 @@ XSS happens when an application includes user-supplied data in a webpage **witho
 | **Stored XSS** | Payload persisted (DB, comments, profile) | Attacker saves payload → other users view page → executes |
 | **DOM-based XSS** | Vulnerable client-side JS manipulates DOM using untrusted data | Browser JS reads location/hash or element content and injects into DOM → executes |
 
----
-
 ### ⚠️ Safe testing warning
 Only run vulnerable examples **locally** or in a lab (e.g., OWASP Juice Shop, WebGoat) or on systems you own/are authorized to test. **Never** attack other people's websites.
 
----
 
 ### 🧪 Minimal vulnerable examples (local testing only)
 
@@ -1401,5 +1394,48 @@ app.get('/search', (req, res) => {
 });
 
 app.listen(3000, () => console.log('listening on 3000'));
+```
+---
+## Service Worker
+
+### 📚 Overview
+A **Service Worker** is a background script that runs **separately from the main browser thread**.  
+It acts as a **network proxy layer** between your web app, the browser, and the network — allowing features like **offline access**, **push notifications**, **background sync**, and **caching assets** for better performance.
+
+> 💡 Think of it as a smart, programmable *network middleman* for your web app.
+
+### 🧩 Key Features
+
+| Feature | Description |
+|----------|--------------|
+| 🕸️ **Offline Support** | Cache assets & data to make your site work offline. |
+| ⚡ **Faster Loading** | Serve content from cache instead of the network. |
+| 🔔 **Push Notifications** | Receive server push messages even when the app is closed. |
+| 🔄 **Background Sync** | Sync data with the server when connectivity returns. |
+| 🔐 **Secure Context** | Only works on HTTPS (or localhost). |
+
+
+### ⚙️ Service Worker Lifecycle
+
+| Stage | Description |
+|--------|--------------|
+| **Register** | The main JS file registers the Service Worker. |
+| **Install** | Runs once when the Service Worker is first installed — good time to cache assets. |
+| **Activate** | Cleans up old caches and takes control. |
+| **Fetch** | Intercepts network requests to serve cached or network responses. |
+
+### 🧱 Example — Basic Service Worker Setup
+
+#### 1️⃣ Register the Service Worker (in your main JS file)
+```bash
+// main.js
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then(() => console.log("✅ Service Worker Registered"))
+      .catch(err => console.error("❌ SW Registration Failed:", err));
+  });
+}
 ```
 ---
