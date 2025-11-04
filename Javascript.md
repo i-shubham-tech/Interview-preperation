@@ -1256,6 +1256,29 @@ function slowSquare(n) {
 console.log(slowSquare(5)); // Calculating... → 25
 console.log(slowSquare(5)); // Calculating... → 25 (recomputed)
 ```
+### 🧱 Example 1 — Without Memoization
+```bash
+function memoizedSquare() {
+  const cache = {};
+
+  return function (n) {
+    if (cache[n]) {
+      console.log('Fetching from cache...');
+      return cache[n];
+    } else {
+      console.log('Calculating...');
+      const result = n * n;
+      cache[n] = result;
+      return result;
+    }
+  };
+}
+
+const square = memoizedSquare();
+
+console.log(square(5)); // Calculating... → 25
+console.log(square(5)); // Fetching from cache... → 25
+```
 ---
 ##  Code Splitting
 
