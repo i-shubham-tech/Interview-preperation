@@ -1256,7 +1256,7 @@ function slowSquare(n) {
 console.log(slowSquare(5)); // Calculating... → 25
 console.log(slowSquare(5)); // Calculating... → 25 (recomputed)
 ```
-### 🧱 Example 1 — Without Memoization
+### 🧱 Example 2 — With Memoization
 ```bash
 function memoizedSquare() {
   const cache = {};
