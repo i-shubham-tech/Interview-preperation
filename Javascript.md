@@ -1219,3 +1219,45 @@ window.addEventListener('scroll', handleScroll);
 ```
 ---
 
+## Memoization
+
+### 📚 Overview
+**Memoization** is an **optimization technique** used to **speed up function execution**  
+by **caching the results** of expensive function calls and **returning the cached result** when the same inputs occur again.
+
+> ⚙️ It’s a **specific form of caching** that stores results based on **function arguments**.
+
+---
+
+### 🧩 Why Memoization?
+
+| Problem | Solution |
+|----------|-----------|
+| Expensive or repetitive function calls slow down the app | Store previous results and reuse them |
+| Recalculations for the same input | Fetch from cache instantly |
+| High computational load | Reduce time complexity by avoiding repetition |
+
+---
+
+### 🧠 How Memoization Works
+
+1. Function is called with an argument.  
+2. Checks if the result for that input exists in the cache.  
+3. If found → return cached result.  
+4. If not → compute result, store it in cache, and return it.
+
+---
+
+### 🧱 Example 1 — Without Memoization
+
+```bash
+function slowSquare(n) {
+  console.log('Calculating...');
+  return n * n;
+}
+
+console.log(slowSquare(5)); // Calculating... → 25
+console.log(slowSquare(5)); // Calculating... → 25 (recomputed)
+```
+---
+
