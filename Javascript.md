@@ -27,7 +27,7 @@
 12. [Promises](#promises)
 13. [Sync, Async & Await](#sync-async--await)
 14. [Timing Functions](#timing-functions)
-15. [Debouncing & Throttle](#debouncing--throttle)
+15. [Debouncing & Throttling](#debouncing--throttling)
 16. [Lazy Loading](#lazy-loading)
 17. [Memoization](#memoization)
 18. [Code Splitting](#code-splitting)
@@ -1086,3 +1086,91 @@ Count: 4
 Count: 5
 Stopped!
 ```
+---
+
+##  Debouncing & Throttling
+
+### 📚 Overview
+Both **Debouncing** and **Throttling** are **performance optimization techniques**  
+used to control how frequently a function is executed — especially in response to  
+frequent events like `scroll`, `resize`, `keypress`, or `mousemove`.
+
+> 🧠 Goal: To **limit unnecessary function calls** and improve **app performance**.
+
+### 🧩 1. Debouncing
+
+| Feature | Description |
+|----------|--------------|
+| **Definition** | Ensures that a function is **executed only after a specified time** has passed **since the last event**. |
+| **Purpose** | To delay execution until the event **stops firing**. |
+| **Use Case** | Search box typing, window resizing, form validation. |
+
+### 🧱 Example — Without Debounce
+
+```bash
+window.addEventListener('resize', () => {
+  console.log('Resized!'); // Fires continuously while resizing
+});
+```
+
+### 🧱 Example — With Debounce
+
+```bash
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+const handleResize = debounce(() => {
+  console.log('Resized! (Debounced)');
+}, 1000);
+
+window.addEventListener('resize', handleResize);
+
+```
+
+### 🧩 2. Throttling
+
+| Feature | Description |
+|----------|--------------|
+| **Definition** | Ensures that a function runs at most once every specified time interval, no matter how often the event occurs. |
+| **Purpose** | To execute function at regular intervals, even if the event keeps firing.. |
+| **Use Case** |scroll tracking, mouse movement, window resizing, API rate limiting. |
+
+### 🧱 Example — Without Throttling
+
+```bash
+window.addEventListener('scroll', () => {
+  console.log('Scrolling...'); // Fires on every scroll event (too frequent)
+});
+```
+
+### 🧱 Example — With Throttling
+
+```bash
+function throttle(fn, limit) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      fn.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+
+const handleScroll = throttle(() => {
+  console.log('Scrolling... (Throttled)');
+}, 1000);
+
+window.addEventListener('scroll', handleScroll);
+
+
+```
+---
+
+
+
