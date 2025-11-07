@@ -4,7 +4,7 @@
 
 ## 📚 Table of Contents
 
-1. [Introduction to Node.js](#introduction-to-nodejs)  
+1. [Introduction to Nodejs](#introduction-to-nodejs)  
 2. [Node.js Architecture](#nodejs-architecture)  
 3. [Node.js Modules](#nodejs-modules)  
 4. [NPM (Node Package Manager)](#npm-node-package-manager)  
@@ -23,7 +23,7 @@
 17. [Deployment](#deployment)  
 18. [Security Best Practices](#security-best-practices)
 
-## 1. Introduction to Node.js
+## 1. Introduction to Nodejs
 
 ### 🧠 What is Node.js?
 Node.js is an **open-source, cross-platform JavaScript runtime environment** that allows  to run JavaScript **outside the browser**, mainly on the **server side**.  
