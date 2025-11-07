@@ -4,7 +4,7 @@
 
 ## 📚 Table of Contents
 
-1. [Introduction to Nodejs](#introduction-to-nodejs)  
+1. [Introduction to Nodejs](#-introduction-to-nodejs)  
 2. [Node.js Architecture](#nodejs-architecture)  
 3. [Node.js Modules](#nodejs-modules)  
 4. [NPM (Node Package Manager)](#npm-node-package-manager)  
