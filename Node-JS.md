@@ -6,20 +6,20 @@
 2. [Node.js Architecture](#2-nodejs-architecture)  
 3. [Node.js Modules](#3-nodejs-modules)  
 4. [NPM (Node Package Manager)](#4-npm-node-package-manager)  
-5. [Asynchronous Programming](#asynchronous-programming)  
-6. [Core Node.js APIs](#core-nodejs-apis)  
-7. [Express.js Framework](#expressjs-framework)  
-8. [RESTful APIs](#restful-apis)  
-9. [Authentication & Authorization](#authentication--authorization)  
-10. [Database Integration](#database-integration)  
-11. [Error Handling & Debugging](#error-handling--debugging)  
-12. [Node.js with Middleware & Libraries](#nodejs-with-middleware--libraries)  
-13. [Streams & Buffers](#streams--buffers)  
-14. [Event-Driven Programming](#event-driven-programming)  
-15. [Scaling & Performance](#scaling--performance)  
-16. [Testing](#testing)  
-17. [Deployment](#deployment)  
-18. [Security Best Practices](#security-best-practices)
+5. [Core Node.js APIs](#5-core-nodejs-apis)
+6. [Asynchronous Programming](#6-asynchronous-programming)  
+8. [Express.js Framework](#expressjs-framework)  
+9. [RESTful APIs](#restful-apis)  
+10. [Authentication & Authorization](#authentication--authorization)  
+11. [Database Integration](#database-integration)  
+12. [Error Handling & Debugging](#error-handling--debugging)  
+13. [Node.js with Middleware & Libraries](#nodejs-with-middleware--libraries)  
+14. [Streams & Buffers](#streams--buffers)  
+15. [Event-Driven Programming](#event-driven-programming)  
+16. [Scaling & Performance](#scaling--performance)  
+17. [Testing](#testing)  
+18. [Deployment](#deployment)  
+19. [Security Best Practices](#security-best-practices)
 
 ## 1. Introduction
 
@@ -227,7 +227,7 @@ npx nodemon index.js
 ```
 ---
 
-## 🧱 5. Core Node.js APIs
+## 5. Core Node.js APIs
 
 ### 🧠 Definition
 **Core Node.js APIs** are the built-in modules that come preinstalled with Node.js, allowing developers to perform essential backend tasks such as **file operations, creating servers, working with paths, encryption, and handling streams** — all without needing external packages.
@@ -362,5 +362,66 @@ A **callback** is a function passed as an argument to another function, executed
 | **Pros** | Simple, widely used in Node.js core modules. | – |
 | **Cons** | Can lead to nested callbacks → “Callback Hell”. | – |
 
----
+### 🧩 Promises
 
+A Promise in JavaScript is an object used to handle asynchronous operations. It represents a value that will be available in the future — either the operation succeeds (resolved) or fails (rejected) — allowing cleaner, non-blocking code using .then(), .catch(), and .finally().
+
+#### 🔄 Promise States
+
+| State | Meaning |
+|--------|----------|
+| **Pending** | Initial state — operation not yet complete |
+| **Fulfilled** | Operation completed successfully |
+| **Rejected** | Operation failed |
+
+#### ⚙️ Common Promise Methods
+
+| Function | Description | Example |
+|-----------|--------------|----------|
+| `then()` | Executes after successful completion | `getData().then(data => console.log(data));` |
+| `catch()` | Executes after operation failed Handles errors | `.catch(err => console.error(err));` |
+| `finally()` | Executes regardless of outcome | `.finally(() => console.log('Done'));` |
+
+#### 💡 Example
+
+```js
+const promise = new Promise((resolve, reject) => {
+  // Perform some async work
+  const success = true;
+
+  if (success) {
+    resolve("Task completed successfully!");
+  } else {
+    reject("Task failed!");
+  }
+});
+
+promise
+  .then(result => console.log(result))     // Handles success
+  .catch(error => console.log(error))      // Handles failure
+  .finally(() => console.log("Done!"));    // Runs always
+```
+### ⚡ async / await
+
+`async` and `await` provide a **cleaner and more readable syntax** for handling asynchronous code, making it look and behave like synchronous code.
+
+#### 🏷️ Keywords
+
+| Keyword | Description | Example |
+|----------|--------------|----------|
+| **async** | Declares a function that always returns a Promise. | `async function fetchData() { ... }` |
+| **await** | Pauses the execution until a Promise is resolved or rejected. | `const data = await getData();` |
+
+#### 💡 Example
+
+```js
+async function fetchUser() {
+  try {
+    const user = await getUser();
+    const posts = await getPosts(user.id);
+    console.log(posts);
+  } catch (err) {
+    console.error('Error:', err);
+  }
+}
+```
