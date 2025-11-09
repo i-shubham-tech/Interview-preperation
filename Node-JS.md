@@ -425,3 +425,148 @@ async function fetchUser() {
   }
 }
 ```
+---
+## 🧩 7. Express.js Framework
+
+### 🧠 What is Express.js?
+
+**Express.js** is a fast, minimalist, and flexible **web application framework** for **Node.js**.  
+It simplifies building **server-side applications and APIs** by providing tools for **routing, middleware, and HTTP handling**.
+
+> ✅ In short: Express = Node.js + Structure + Simplicity
+
+### 🏗️ Express Architecture
+
+Express follows a **middleware-based architecture**, where each incoming request passes through a **stack of functions (middlewares)** before reaching the final response.
+
+**Flow:**  
+`Client Request → Middleware(s) → Route Handler → Response`
+
+| Component | Description |
+|------------|--------------|
+| **Application** | Created using `express()` — core of Express app |
+| **Request (req)** | Represents the HTTP request data |
+| **Response (res)** | Represents the HTTP response sent back |
+| **Middleware** | Functions that process requests before they reach the route |
+| **Router** | Handles routing for different endpoints (GET, POST, etc.) |
+
+
+### 🚀 Creating a Basic Express Server
+
+```js
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello Express!');
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
+
+### ⚙️ **Middleware in Express.js**
+
+Middleware is a function that have access to the **req**, **res**, and **next()** objects.  
+They can **modify**, **log**, **validate**, or **handle** requests **before** sending the final response.
+
+
+#### 🔍 Types of Middleware
+
+| Type | Description | Example |
+|------|--------------|----------|
+| **Built-in** | Provided by Express itself for common tasks. | `app.use(express.json());` — Parses incoming JSON data |
+| **Custom** | Created by developers for specific logic or validation. | ```js app.use((req, res, next) => { console.log('Request received'); next(); }); ``` |
+| **Third-party** | Installed from npm to add features like CORS or logging. | `app.use((cors());` — Enables cross-origin requests |
+
+
+#### 🧩 Note:
+- Middlewares are executed **in the order they are defined** in your code.  
+- Each middleware should call **next()** to pass control to the next function in the stack.
+
+
+#### ✅ Example:
+
+```js
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+// Built-in middleware
+app.use(express.json());
+
+// Third-party middleware
+app.use(cors());
+
+// Custom middleware
+app.use((req, res, next) => {
+  console.log('Middleware executed!');
+  next();
+});
+
+app.get('/', (req, res) => {
+  res.send('Hello Middleware!');
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
+
+### 🧭 **Routing in Express.js**
+
+Express provides a simple and flexible way to define **RESTful routes** to handle different HTTP methods like **GET**, **POST**, **PUT**, and **DELETE**.
+
+#### 🔹 Common HTTP Methods
+
+| Method | Description | Example |
+|--------|--------------|----------|
+| **GET** | Retrieve data from the server. | `app.get('/users', (req, res) => {...});` |
+| **POST** | Create new data on the server. | `app.post('/users', (req, res) => {...});` |
+| **PUT** | Update existing data by ID or key. | `app.put('/users/:id', (req, res) => {...});` |
+| **DELETE** | Delete data by ID or key. | `app.delete('/users/:id', (req, res) => {...});` |
+
+
+#### 💡 Example:
+
+```js
+app.get('/hello', (req, res) => {
+  res.send('GET request received');
+});
+
+app.post('/data', (req, res) => {
+  res.send('POST request received');
+});
+```
+### 🧰 Error Handling in Express
+
+Express provides a built-in way to handle errors using **error-handling middleware** i contain four parameter err first one.  
+These middleware functions help catch and manage runtime or request errors **globally** in your application.
+
+
+#### 🧩 Example:
+
+```js
+app.use((err, req, res, next) => {
+  console.error(err.stack);          // Logs error details
+  res.status(500).send('Something went wrong!');  // Sends error response
+});
+
+```
+## 📦 Working with Common Middleware
+
+Express allows integration of various middleware packages to handle tasks like parsing data, enabling CORS, logging requests, and improving security.
+
+### 🧠 Commonly Used Middleware
+
+| Package | Purpose | Example Usage |
+|----------|----------|----------------|
+| **body-parser** | Parses incoming request bodies (JSON or URL-encoded). | `app.use(express.json());`<br>`app.use(express.urlencoded({ extended: true }));` |
+| **cors** | Enables Cross-Origin Resource Sharing to allow requests from different domains. | `const cors = require('cors');`<br>`app.use(cors());` |
+| **morgan** | Logs incoming HTTP requests for debugging and monitoring. | `const morgan = require('morgan');`<br>`app.use(morgan('dev'));` |
+| **helmet** | Adds security-related HTTP headers to protect your app. | `const helmet = require('helmet');`<br>`app.use(helmet());` |
+
+
+### 💡 Tip:
+> Middleware like **helmet** and **morgan** are essential in production environments for security and logging,  
+> while **cors** and **body-parser** are crucial for API
+
+---
+
