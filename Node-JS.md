@@ -1,7 +1,5 @@
 <h1 align="center">🚀 Node JS</h1>
 
-## Table Content
-
 ## 📚 Table of Contents
 
 1. [Introduction](#1-introduction)  
@@ -227,6 +225,142 @@ NPM uses **semantic versioning** in the format:
 npx create-react-app myApp
 npx nodemon index.js
 ```
+---
+
+## 🧱 5. Core Node.js APIs
+
+### 🧠 Definition
+**Core Node.js APIs** are the built-in modules that come preinstalled with Node.js, allowing developers to perform essential backend tasks such as **file operations, creating servers, working with paths, encryption, and handling streams** — all without needing external packages.
 
 
+### 📂 fs (File System Module)
+
+The **fs** module enables interaction with the file system, allowing you to **read, write, update, delete, or rename files**.  
+It supports both **synchronous** and **asynchronous** operations.
+
+| Function | Description | Example |
+|-----------|--------------|----------|
+| `fs.readFile()` | Reads the contents of a file asynchronously. | `fs.readFile('file.txt', 'utf8', (err, data) => console.log(data));` |
+| `fs.writeFile()` | Writes data to a file, creating it if it doesn’t exist. | `fs.writeFile('new.txt', 'Hello Node!', err => console.log('Saved!'));` |
+| `fs.appendFile()` | Appends data to a file. | `fs.appendFile('log.txt', 'New log entry\n', () => {});` |
+| `fs.unlink()` | Deletes a file. | `fs.unlink('old.txt', () => console.log('Deleted!'));` |
+| `fs.existsSync()` | Checks if a file exists. | `console.log(fs.existsSync('file.txt'));` |
+
+
+### 🌐 http (HTTP Module)
+The **http** module is used to **create web servers and handle HTTP requests and responses**.  
+It’s the foundation for frameworks like **Express.js**.
+
+| Function | Description | Example |
+|-----------|--------------|----------|
+| `http.createServer()` | Creates a new HTTP server. | `http.createServer((req, res) => res.end('Hello!')).listen(3000);` |
+| `res.writeHead()` | Sends response headers to the client. | `res.writeHead(200, {'Content-Type': 'text/plain'});` |
+| `res.end()` | Ends the response process. | `res.end('Done');` |
+| `req.url` | Returns the requested URL path. | `console.log(req.url);` |
+
+### ⚙️ os (Operating System Module)
+The **os** module provides **system-related information** such as CPU, memory, hostname, and network interfaces.
+
+| Function | Description | Example |
+|-----------|--------------|----------|
+| `os.platform()` | Returns the operating system platform. | `console.log(os.platform());` |
+| `os.cpus()` | Returns CPU core information. | `console.log(os.cpus());` |
+| `os.totalmem()` | Returns total system memory. | `console.log(os.totalmem());` |
+| `os.freemem()` | Returns free system memory. | `console.log(os.freemem());` |
+| `os.hostname()` | Returns the host name of the system. | `console.log(os.hostname());` |
+
+
+### 📁 path (Path Module)
+The **path** module helps manage **file and directory paths** across operating systems safely and consistently.
+
+| Function | Description | Example |
+|-----------|--------------|----------|
+| `path.join()` | Joins multiple path segments into one. | `path.join(__dirname, 'folder', 'file.txt');` |
+| `path.basename()` | Returns the filename from a path. | `path.basename('/user/docs/file.txt');` |
+| `path.extname()` | Returns the file extension. | `path.extname('index.html');` |
+| `path.dirname()` | Returns the directory name. | `path.dirname('/user/docs/file.txt');` |
+| `path.resolve()` | Resolves an absolute path. | `path.resolve('folder', 'file.txt');` |
+
+
+### 🌍 url (URL Module)
+The **url** module is used for **URL parsing, formatting, and manipulation**.
+
+| Function | Description | Example |
+|-----------|--------------|----------|
+| `new URL()` | Creates a new URL object. | `const myURL = new URL('https://example.com/path?name=test');` |
+| `url.hostname` | Returns the host name. | `console.log(myURL.hostname);` |
+| `url.pathname` | Returns the path part of the URL. | `console.log(myURL.pathname);` |
+| `url.searchParams` | Accesses query parameters. | `console.log(myURL.searchParams.get('name'));` |
+
+
+### 🔄 stream (Stream Module)
+The **stream** module handles **streaming data** — ideal for large files, video streaming, or network communication.  
+It processes data **in chunks**, improving performance and memory usage.
+
+| Type / Function | Description | Example |
+|------------------|--------------|----------|
+| **Readable Stream** | Source of data (e.g., reading a file). | `fs.createReadStream('input.txt');` |
+| **Writable Stream** | Destination to write data. | `fs.createWriteStream('output.txt');` |
+| **pipe()** | Transfers data between streams. | `readStream.pipe(writeStream);` |
+| **Duplex Stream** | Both readable and writable. | Used in sockets. |
+| **Transform Stream** | Modifies data while streaming. | Used in compression/encryption. |
+
+
+### 🔐 crypto (Crypto Module)
+The **crypto** module provides **encryption, decryption, and hashing** functionalities for securing data.
+
+| Function | Description | Example |
+|-----------|--------------|----------|
+| `crypto.createHash()` | Creates a hash object (e.g., SHA-256). | `crypto.createHash('sha256').update('data').digest('hex');` |
+| `crypto.createCipheriv()` | Encrypts data using an algorithm and key. | `crypto.createCipheriv('aes-256-cbc', key, iv);` |
+| `crypto.createDecipheriv()` | Decrypts previously encrypted data. | `crypto.createDecipheriv('aes-256-cbc', key, iv);` |
+| `crypto.randomBytes()` | Generates random bytes for keys/IVs. | `crypto.randomBytes(16);` |
+| `crypto.pbkdf2()` | Derives a key from a password. | `crypto.pbkdf2('pass', 'salt', 1000, 64, 'sha512', cb);` |
+
+
+> 🧩 These **core Node.js modules** are essential tools that power everything from simple file I/O to secure network communication, making Node.js a complete runtime for backend development.
+
+## 6. Asynchronous Programming
+
+### 🧠 Definition
+**Asynchronous programming** in Node.js allows multiple operations (like file reads, API calls, or database queries) to run **without blocking** the main thread.  
+This is achieved using **callbacks, promises, async/await, and event-driven architecture**, making Node.js fast and efficient.
+
+
+### 🔁 Callback Functions
+A **callback** is a function passed as an argument to another function, executed after the main task completes.
+
+| Concept | Description | Example |
+|----------|--------------|----------|
+| **Callback** | Function executed after an async task completes. | ```js\nfs.readFile('data.txt', 'utf8', (err, data) => {\n  if (err) throw err;\n  console.log(data);\n});\n``` |
+| **Pros** | Simple, widely used in Node.js core modules. | – |
+| **Cons** | Can lead to nested callbacks → “Callback Hell”. | – |
+
+---
+
+### 😵 Callback Hell
+
+Occurs when multiple asynchronous operations are **nested inside each other**, making code **hard to read and maintain**.
+
+```js
+// Callback Hell Example
+getUser(id, (user) => {
+  getPosts(user.id, (posts) => {
+    getComments(posts[0].id, (comments) => {
+      console.log(comments);
+    });
+  });
+});
+```
+
+### 🔁 Callback Functions
+A **callback** is a function passed as an argument to another function, executed after the main task completes.
+
+| Concept | Description | Example |
+|----------|--------------|----------|
+| **Callback** | Function executed after an async task completes. | ```js\nfs.readFile('data.txt', 'utf8', (err, data) => {\n  if (err) throw err;\n  console.log(data);\n});\n``` |
+| **Pros** | Simple, widely used in Node.js core modules. | – |
+| **Cons** | Can lead to nested callbacks → “Callback Hell”. | – |
+
+---
 
