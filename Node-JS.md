@@ -570,3 +570,60 @@ Express allows integration of various middleware packages to handle tasks like p
 
 ---
 
+## 🗄️ 8. RESTful APIs
+
+### 🌐 What is REST API?
+
+A REST API is a way for the client and server to communicate using standard HTTP methods (GET, POST, PUT, DELETE), where each resource is identified by a URL, enabling simple, stateless, and structured data exchange.
+
+> 🧠 In short: REST APIs make data exchange simple, stateless, and scalable.
+
+### ⚙️ CRUD Operations with HTTP Methods
+
+| Operation | HTTP Method | Description | Example Endpoint |
+|------------|--------------|--------------|------------------|
+| **Create** | `POST` | Add new data | `POST /users` |
+| **Read** | `GET` | Fetch data | `GET /users` |
+| **Update** | `PUT / PATCH` | Modify existing data | `PUT /users/:id` |
+| **Delete** | `DELETE` | Remove data | `DELETE /users/:id` |
+
+### 📊 Common HTTP Status Codes
+
+| Code | Meaning | Description |
+|------|----------|-------------|
+| **200** | OK | Request successful |
+| **201** | Created | Resource successfully created |
+| **400** | Bad Request | Invalid request from client |
+| **401** | Unauthorized | Authentication required or failed |
+| **404** | Not Found | Resource not found |
+| **500** | Internal Server Error | Server-side error |
+
+
+### 🧩 API Versioning & Best Practices
+
+| Practice | Description |
+|-----------|--------------|
+| **Versioning** | Use versioning to manage updates (e.g., `/api/v1/users`). |
+| **Consistent Naming** | Use plural nouns for endpoints (`/users`, `/products`). |
+| **Use Proper Status Codes** | Always return meaningful status codes. |
+| **Handle Errors Gracefully** | Return clear error messages in JSON format. |
+| **Secure Endpoints** | Use authentication (JWT, OAuth) where required. |
+
+### 🧪 Testing with Postman
+
+**Postman** is a popular tool used to test REST APIs by sending HTTP requests and viewing responses.
+
+**Example Workflow:**
+1. Open Postman and create a new request.
+2. Choose the HTTP method (`GET`, `POST`, etc.).
+3. Enter your API endpoint (e.g., `http://localhost:3000/api/v1/users`).
+4. Add headers or body (if needed).
+5. Click **Send** to test and view the response.
+
+
+> ✅ **In Short:**  
+> RESTful APIs provide a structured, consistent, and stateless way for clients and servers to communicate efficiently.
+
+---
+
+
