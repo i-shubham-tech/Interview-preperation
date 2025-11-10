@@ -320,6 +320,8 @@ The **crypto** module provides **encryption, decryption, and hashing** functiona
 
 > 🧩 These **core Node.js modules** are essential tools that power everything from simple file I/O to secure network communication, making Node.js a complete runtime for backend development.
 
+---
+
 ## 6. Asynchronous Programming
 
 ### 🧠 Definition
@@ -625,5 +627,509 @@ A REST API is a way for the client and server to communicate using standard HTTP
 > RESTful APIs provide a structured, consistent, and stateless way for clients and servers to communicate efficiently.
 
 ---
+
+## 🔐 9. Authentication & Authorization
+
+### 🧾 Authentication vs Authorization
+
+| Concept | Meaning | Example |
+|----------|----------|----------|
+| **Authentication** |  Verifying who the user is. (login identity). | Logging in with email and password |
+| **Authorization** | Deciding what the user can do after login.(permissions). | Admin can delete users, normal users cannot |
+
+### Way to do 
+
+> JSON Web Token (JWT)
+> OAuth 2.0 (Basics)
+> Role-Based Access Control (RBAC)
+
+### 🔑 JSON Web Token (JWT)
+
+#### 📘 Definition
+JWT  is a token  used to **verify user identity** and **securely send user information between client and server**
+
+#### 🧩 Key Concepts
+
+| Concept | Description | Example |
+|----------|--------------|----------|
+| **Structure** | JWT token has 3 parts — Header, Payload, Signature. | `xxxxx.yyyyy.zzzzz` |
+| **Header** | Contains token type & algorithm used. | `{ "alg": "HS256", "typ": "JWT" }` |
+| **Payload** | Stores user data (like id, role, expiry). | `{ "id": 1, "name": "Shubham" }` |
+| **Signature** | Ensures token is valid and untampered. | Created using secret key & algorithm |
+| **Stateless** | Server doesn’t store session — token is self-contained. | No session data on server |
+| **Secure** | Signed with a secret or private key (not encrypted). | `jwt.sign(data, secret)` |
+| **Expiration** | Tokens can have an expiry time for security. | `{ expiresIn: '1h' }` |
+
+#### ⚙️ Example: Creating & Verifying JWT in Node.js
+
+```js
+const jwt = require('jsonwebtoken');
+
+// 🔹 1. Create a Token
+const user = { id: 1, name: 'Shubham', role: 'admin' };
+const token = jwt.sign(user, 'mySecretKey', { expiresIn: '1h' });
+console.log('Generated Token:', token);
+
+// 🔹 2. Verify the Token
+try {
+  const decoded = jwt.verify(token, 'mySecretKey');
+  console.log('Verified Data:', decoded);
+} catch (err) {
+  console.error('Invalid Token:', err.message);
+}
+```
+
+### 🔐 OAuth 2.0 (Basics)
+
+**OAuth2** is an **authorization framework** that allows users to log in using third-party services like **Google, GitHub, or Facebook** — without sharing passwords.
+
+#### 🧭 Example Flow
+1. You click **“Login with Google”**.  
+2. Google verifies your identity.  
+3. Your app receives a **secure access token** from Google.  
+4. The token allows your app to access **limited user data** (like name or email).
+
+✅ **Used for:** Social logins, third-party integrations, and secure delegated access.
+
+#### 💻 Example Code (Google OAuth2 with Express)
+
+```javascript
+import express from "express";
+import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+
+const app = express();
+
+// Configure Google OAuth2 strategy
+passport.use(new GoogleStrategy({
+  clientID: "GOOGLE_CLIENT_ID",
+  clientSecret: "GOOGLE_CLIENT_SECRET",
+  callbackURL: "/auth/google/callback"
+}, (accessToken, refreshToken, profile, done) => {
+  // Here you can save user info to DB
+  return done(null, profile);
+}));
+
+app.use(passport.initialize());
+
+// Route to start Google login
+app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+// Callback route after login
+app.get("/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res) => {
+    res.send("Login successful!");
+  }
+);
+
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+```
+
+### 🧩 Role-Based Access Control (RBAC)
+
+**Role-Based Access Control (RBAC)** is a security model that allow system access permisson based on a user's **role** (e.g., admin, editor, user).  
+Each role has specific **permissions** that define what actions it can perform.
+
+### 🔑 Key Concepts
+
+| Term | Description | Example |
+|------|--------------|----------|
+| **Role** | Defines a set of permissions. | `admin`, `user`, `editor` |
+| **Permission** | Specific action allowed or denied. | `createUser`, `deletePost` |
+| **User** | Assigned one or more roles. | `User A → admin` |
+| **Access Control** | Logic that checks if a user has permission. | Only `admin` can delete data. |
+
+---
+
+### 💻 Example (Express.js RBAC)
+
+```javascript
+// Simple RBAC middleware
+
+const roles = {
+  admin: ["read", "write", "delete"],
+  editor: ["read", "write"],
+  user: ["read"]
+};
+
+// Middleware to check permissions
+function authorize(role, action) {
+  return (req, res, next) => {
+    if (roles[role] && roles[role].includes(action)) {
+      next();
+    } else {
+      res.status(403).send("Access Denied");
+    }
+  };
+}
+
+// Usage in Express routes
+import express from "express";
+const app = express();
+
+app.get("/data", authorize("user", "read"), (req, res) => {
+  res.send("Data viewed successfully");
+});
+
+app.post("/data", authorize("editor", "write"), (req, res) => {
+  res.send("Data created successfully");
+});
+
+app.delete("/data", authorize("admin", "delete"), (req, res) => {
+  res.send("Data deleted successfully");
+});
+
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+```
+---
+## 🗃️ 10. Database Integration
+
+Node.js can connect to both **NoSQL** and **SQL** databases to perform CRUD (Create, Read, Update, Delete) operations efficiently.
+
+### ⚙️ Connecting Node.js to Databases
+
+| Database Type | Popular Databases | Libraries/ORMs | Description |
+|----------------|------------------|----------------|--------------|
+| **NoSQL** | MongoDB | **Mongoose** | Stores data in flexible JSON-like documents. |
+| **SQL** | MySQL, PostgreSQL | **mysql2**,**Sequelize** | Stores data in structured tables with relations. |
+
+### 🍃 MongoDB (Using Mongoose)
+
+**Mongoose** is an ODM (Object Data Modeling) library that helps interact with MongoDB using schemas and models.
+
+```javascript
+// Install: npm install mongoose
+import mongoose from "mongoose";
+
+// Connect to MongoDB
+mongoose.connect("mongodb://localhost:27017/mydb")
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch(err => console.error("❌ DB Connection Error:", err));
+
+// Define Schema & Model
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  age: Number
+});
+
+const User = mongoose.model("User", userSchema);
+
+// CRUD Example
+async function createUser() {
+  const newUser = new User({ name: "John", email: "john@example.com", age: 25 });
+  await newUser.save();
+  console.log("User Created:", newUser);
+}
+
+createUser();
+
+```
+
+### MySQL / PostgreSQL (Using Sequelize)
+
+Sequelize is an ORM for relational databases that helps define models and manage queries.
+```
+// Install: npm install sequelize 
+import { Sequelize, DataTypes } from "sequelize";
+
+const sequelize = new Sequelize("mydb", "root", "password", {
+  host: "localhost",
+  dialect: "mysql"
+});
+
+// Test connection
+sequelize.authenticate()
+  .then(() => console.log("✅ MySQL Connected"))
+  .catch(err => console.error("❌ Connection Error:", err));
+
+// Define Model
+const User = sequelize.define("User", {
+  name: DataTypes.STRING,
+  email: DataTypes.STRING,
+  age: DataTypes.INTEGER
+});
+
+// Sync and Create Record
+(async () => {
+  await sequelize.sync();
+  const user = await User.create({ name: "Alice", email: "alice@mail.com", age: 22 });
+  console.log("User Created:", user.toJSON());
+})();
+
+```
+## (MySQL with Node.js)
+
+**MySQL** is a popular **relational database** that organizes data in **tables** with rows and columns.  
+
+In Node.js, you can connect to MySQL either using the **mysql2** library (for direct queries) or **Sequelize** (an ORM for structured operations).
+
+### Connecting Node.js with MySQL (Using `mysql2`)
+
+```javascript
+// Install: npm install mysql2
+import mysql from "mysql2";
+
+// Create connection
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  database: "studentDB"
+});
+
+// Connect
+db.connect(err => {
+  if (err) throw err;
+  console.log("✅ MySQL Connected Successfully!");
+});
+
+```
+---
+## 🧰 11. Error Handling & Debugging
+
+**Error Handling** in Node.js helps detect and manage issues during code execution to prevent app crashes and improve stability.
+
+
+### ⚙️ Types of Errors
+
+| Type | Description | How to Handle |
+|------|--------------|----------------|
+| **Synchronous Error** | Occurs during immediate code execution. | `try...catch` |
+| **Asynchronous Error** | Happens in callbacks or promises. | `.catch()` or `try...catch` with `async/await` |
+| **Uncaught Exception** | Unexpected runtime error not caught anywhere. | `process.on('uncaughtException')` |
+| **Unhandled Rejection** | Promise rejected without a `.catch()` block. | `process.on('unhandledRejection')` |
+
+### 💻 Example
+
+```javascript
+// Synchronous error
+try {
+  throw new Error("Something went wrong!");
+} catch (err) {
+  console.error("❌ Error:", err.message);
+}
+
+// Promise error
+getData()
+  .then(res => console.log(res))
+  .catch(err => console.error("❌ Promise Error:", err));
+
+// Global error handling
+process.on("uncaughtException", err => console.error("🚨 Uncaught:", err));
+process.on("unhandledRejection", err => console.error("🚨 Unhandled:", err));
+
+```
+---
+## ⚙️ 12. Node.js with Middleware & Libraries
+
+Middleware and third-party libraries enhance the functionality, security, and maintainability of Node.js applications.
+
+### 🧩 Common Middleware & Libraries
+
+| Library | Purpose | Example Usage |
+|----------|----------|----------------|
+| **cors** | Enables Cross-Origin Resource Sharing. | `app.use(require('cors')());` |
+| **helmet** | Adds security-related HTTP headers. | `app.use(require('helmet')());` |
+| **morgan** | Logs incoming HTTP requests. | `app.use(require('morgan')('dev'));` |
+| **dotenv** | Loads environment variables from `.env`. | `require('dotenv').config();` |
+| **express-validator** | Validates and sanitizes incoming request data. | `check('email').isEmail()` |
+| **express-rate-limit** | Limits repeated requests to protect from abuse. | `app.use(rateLimit({ windowMs: 60000, max: 100 }));` |
+
+
+### 🧩 1. CORS (Cross-Origin Resource Sharing)
+
+**Definition:**  
+CORS allows your server to accept requests from a different domain (frontend → backend).  
+Without CORS, browsers block requests for security reasons.
+
+**Example:**
+```javascript
+// Install: npm install cors
+import express from "express";
+import cors from "cors";
+
+const app = express();
+app.use(cors()); // Enable all origins
+
+app.get("/", (req, res) => res.send("CORS enabled!"));
+app.listen(3000, () => console.log("Server running on port 3000"));
+```
+
+### 🧩 2.Helmet
+
+**Definition:**  
+Helmet secures your Express app by setting various HTTP headers (like hiding server info, preventing XSS).
+
+**Example:**
+```javascript
+// Install: npm install helmet
+import express from "express";
+import helmet from "helmet";
+
+const app = express();
+app.use(helmet()); // Adds security headers
+
+app.get("/", (req, res) => res.send("Helmet security active"));
+app.listen(3000, () => console.log("Server secure with Helmet"));
+
+```
+
+### 🧩 3.Morgan
+
+**Definition:**  
+Morgan is a HTTP request logger middleware that logs incoming requests (method, URL, status, time).
+
+**Example:**
+```javascript
+// Install: npm install morgan
+import express from "express";
+import morgan from "morgan";
+
+const app = express();
+app.use(morgan("dev")); // Logs all incoming requests
+
+app.get("/", (req, res) => res.send("Logging with Morgan"));
+app.listen(3000, () => console.log("Server running with Morgan logs"));
+
+
+```
+
+### 🧩 4.Dotenv
+
+**Definition:**  
+Dotenv loads environment variables from a .env file into process.env, keeping secrets (like DB passwords) out of your code.
+
+**Example:**
+```javascript
+// Install: npm install dotenv
+import express from "express";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load variables from .env
+
+const app = express();
+const PORT = process.env.PORT || 4000;
+
+app.get("/", (req, res) => res.send(`Running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+```
+
+### 🧩 5.express-validator
+
+**Definition:**  
+A library used to validate and sanitize user input before processing requests.
+**Example:**
+```javascript
+// Install: npm install express-validator
+import express from "express";
+import { body, validationResult } from "express-validator";
+
+const app = express();
+app.use(express.json());
+
+app.post(
+  "/register",
+  [
+    body("email").isEmail().withMessage("Invalid email"),
+    body("password").isLength({ min: 5 }).withMessage("Password too short")
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    res.send("User registered successfully!");
+  }
+);
+
+app.listen(3000, () => console.log("Server running with validation"));
+```
+### 🧩 6. express-rate-limit
+
+**Definition:**  
+Limits the number of requests a user can make in a given time period to prevent DDoS or brute-force attacks.
+**Example:**
+```javascript
+// Install: npm install express-rate-limit
+import express from "express";
+import rateLimit from "express-rate-limit";
+
+const app = express();
+
+// Allow max 100 requests per 15 minutes per IP
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests, please try again later."
+});
+
+app.use(limiter);
+
+app.get("/", (req, res) => res.send("Rate limiting active!"));
+app.listen(3000, () => console.log("Server running with rate limit"));
+```
+---
+## 🌊 13. Streams & Buffers
+
+### 🧠 What are Buffers?
+**Definition:**  
+A **Buffer** is a temporary memory area used to store binary data (like files, images, or video) while it’s being transferred between different parts of a system.
+
+**Example:**
+```javascript
+const buffer = Buffer.from("Hello");
+console.log(buffer); // <Buffer 48 65 6c 6c 6f>
+console.log(buffer.toString()); // Hello
+```
+
+### 🔄 stream 
+The **stream** module handles **streaming data** — ideal for large files, video streaming, or network communication.  
+It processes data **in chunks**, improving performance and memory usage.
+
+| Type / Function | Description | Example |
+|------------------|--------------|----------|
+| **Readable Stream** | Source of data (e.g., reading a file). | `fs.createReadStream('input.txt');` |
+| **Writable Stream** | Destination to write data. | `fs.createWriteStream('output.txt');` |
+| **pipe()** | Transfers data between streams. | `readStream.pipe(writeStream);` |
+| **Duplex Stream** | Both readable and writable. | Used in sockets. |
+| **Transform Stream** | Modifies data while streaming. | Used in compression/encryption. |
+
+---
+## 🔔 14. Event-Driven Programming
+
+### 🧩 Definition
+
+**Event-Driven Programming** is a programming paradigm where the flow of the program is controlled by **events** — such as user actions, messages, or system signals — instead of a fixed sequence of code execution.
+
+In **Node.js**, this concept is the core of its architecture, as it uses an **event loop** to handle asynchronous operations efficiently.
+
+### ⚙️ EventEmitter Class
+
+The **EventEmitter** class (from Node’s `events` module) allows creating, emitting, and listening to **custom events**.
+
+Many Node.js core modules (like **HTTP**, **Streams**) are built on top of it.
+
+### 🧠 Here
+- `.on()` → listens for an event  
+- `.emit()` → triggers the event  
+
+### Example:
+```js
+import { EventEmitter } from "events";
+const event = new EventEmitter();
+
+event.on("greet", () => {
+  console.log("Hello, welcome!");
+});
+
+event.emit("greet"); // Output: Hello, welcome!
+```
+---
+
+
+
 
 
