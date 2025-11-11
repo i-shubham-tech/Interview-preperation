@@ -15,7 +15,7 @@
 12. [Error Handling & Debugging](#error-handling--debugging)  
 13. [Node.js with Middleware & Libraries](#nodejs-with-middleware--libraries)  
 14. [Streams & Buffers](#streams--buffers)  
-15. [Event-Driven Programming](#event-driven-programming)  
+15. [Event-Driven Programming](#14-event-driven-programming)  
 16. [Scaling & Performance](#scaling--performance)  
 17. [Testing](#testing)  
 18. [Deployment](#deployment)  
@@ -1098,13 +1098,13 @@ It processes data **in chunks**, improving performance and memory usage.
 | **Transform Stream** | Modifies data while streaming. | Used in compression/encryption. |
 
 ---
-## 🔔 14. Event-Driven Programming
+##  14. Event-Driven Programming
 
 ### 🧩 Definition
 
-**Event-Driven Programming** is a programming paradigm where the flow of the program is controlled by **events** — such as user actions, messages, or system signals — instead of a fixed sequence of code execution.
+**Event-Driven Programming** is a programming paradigm where program waits for certain events **like user actions or messages**, and whenever an event happens, the related code gets executed..
 
-In **Node.js**, this concept is the core of its architecture, as it uses an **event loop** to handle asynchronous operations efficiently.
+> In **Node.js**, this concept is the core of its architecture, as it uses an **event loop** to handle asynchronous operations efficiently.
 
 ### ⚙️ EventEmitter Class
 
