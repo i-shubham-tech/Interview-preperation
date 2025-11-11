@@ -70,12 +70,14 @@ It is built on the **Google Chrome V8  Engine** and uses **libuv** to manage asy
 | Component | Description |
 |------------|-------------|
 | **V8  Engine** | Executes JavaScript code outside the browser by compiling it into machine code. |
-| **Event Loop** | Continuously checks the call stack and event queues to process callbacks asynchronously. |
+| **Event Loop** | The event loop in Node.js is essentially the mechanism that handles asynchronous operations.It continuously checks the call stack and the callback queue. When the call stack is empty, it will take the first callback from the callback queue and push it onto the call stack for execution.The event loop also manages various phases, like timers, I/O operations, and more, to ensure non-blocking behavior and efficient performance.. |
 | **Call Stack** | Executes synchronous code in a single thread. |
 | **Event Queue (Callback Queue)** | Stores callbacks of completed asynchronous operations waiting for execution. |
 | **Microtask Queue** | Executes promises and `process.nextTick()` before the next event loop tick. |
 | **libuv (Thread Pool)** | Handles heavy I/O tasks (file system, DNS, compression) in background threads. |
 | **Non-Blocking I/O** | Allows multiple operations to run concurrently without blocking the main thread. |
+| **process.nextTick()** | It executes a callback function immediately after the current operation completes,before the event loop continues to the next phase.. |
+| **setImmediate()** | It schedules a callback to run on the next iteration (or tick) of the event loop,after the current I/O events are processed.. |
 
 ### ⚙️ Workflow
 
@@ -299,8 +301,8 @@ It processes data **in chunks**, improving performance and memory usage.
 
 | Type / Function | Description | Example |
 |------------------|--------------|----------|
-| **Readable Stream** | Source of data (e.g., reading a file). | `fs.createReadStream('input.txt');` |
-| **Writable Stream** | Destination to write data. | `fs.createWriteStream('output.txt');` |
+| **Readable Stream** | Read data from source (e.g., reading a file). | `fs.createReadStream('input.txt');` |
+| **Writable Stream** |  Write data on destination. | `fs.createWriteStream('output.txt');` |
 | **pipe()** | Transfers data between streams. | `readStream.pipe(writeStream);` |
 | **Duplex Stream** | Both readable and writable. | Used in sockets. |
 | **Transform Stream** | Modifies data while streaming. | Used in compression/encryption. |
@@ -1102,13 +1104,13 @@ It processes data **in chunks**, improving performance and memory usage.
 
 ### 🧩 Definition
 
-**Event-Driven Programming** is a programming paradigm where program waits for certain events **like user actions or messages**, and whenever an event happens, the related code gets executed..
+**Event-Driven Programming** is a programming paradigm where program react to  events **like user interaction or messages**, and whenever an event happens, it corresponding code gets executed..
 
 > In **Node.js**, this concept is the core of its architecture, as it uses an **event loop** to handle asynchronous operations efficiently.
 
 ### ⚙️ EventEmitter Class
 
-The **EventEmitter** class (from Node’s `events` module) allows creating, emitting, and listening to **custom events**.
+The **EventEmitter** class (from Node’s `events` module) allows creating **custom events**.
 
 Many Node.js core modules (like **HTTP**, **Streams**) are built on top of it.
 
