@@ -25,21 +25,21 @@
 
 ### 🧠 What is Node.js?
 Node.js is an **open-source, cross-platform JavaScript runtime environment** that allows  to run JavaScript **outside the browser**, mainly on the **server side**.  
-It built on  **Google Chrome V8 engine** to execute code at lightning speed and provides an single-thread, non-blocking event-driven architecture .
+It built on  **Google Chrome V8 engine** that follow an single-thread, non-blocking event-driven architecture it allows  to handle thousands of concurrent connections efficiently — all within a **single thread** without creating new thread for each request. .
 
 ### ⚡ Why Node.js? (Advantages over Traditional Backend Tech)
 - **Single Language:** Use JavaScript for both frontend and backend.  
-- **High Performance:** Built on V8 engine boosts execution speed.
+- **High Performance:** Built on V8 engine that boosts execution speed.
 - **REST SAME AS FEATURE**
 
 ### 🌟 Features of Node.js
 
 | **Feature** | **Description** |
 |--------------|-----------------|
-| **Single Threaded** | Uses an event loop to handle multiple concurrent requests efficiently without creating new threads for each. |
-| **Asynchronous & Non-Blocking I/O** | Handles multiple operations(file read,db query) without waiting for any to finish by using callbacks, promises, or async/await. |
-| **Event-Driven** | Uses an event loop that listens for events and executes corresponding callbacks. |
-| **Rich npm Library** | Provides access to over a million reusable open-source packages. |
+| **Single Threaded** | Uses an event loop to handle thousand of concurrent requests efficiently without creating new threads for each. |
+| **Asynchronous & Non-Blocking I/O** |Allows multiple operations to run concurrently without blocking the main thread using callbacks, promises, or async/await. |
+| **Event-Driven** | program react to event(user interaction or message) when event happen its  corresponding callbacks or code get executes. |
+| **Rich npm Library** | Provides access to over a million of open-source libraries. |
 | **Cross-Platform Support** | Compatible with major operating systems including Windows, macOS, and Linux. |
 | **Community Support** | Backed by a large and active open-source community contributing to continuous improvement. |
 
@@ -69,9 +69,9 @@ It is built on the **Google Chrome V8  Engine** and uses **libuv** to manage asy
 
 | Component | Description |
 |------------|-------------|
-| **V8  Engine** | Executes JavaScript code outside the browser by compiling it into machine code. |
+| **V8 Engine** | Executes JavaScript code outside the browser by compiling it into machine code. |
 | **Event Loop** | The event loop in Node.js is essentially the mechanism that handles asynchronous operations.It continuously checks the call stack and the callback queue. When the call stack is empty, it will take the first callback from the callback queue and push it onto the call stack for execution.The event loop also manages various phases, like timers, I/O operations, and more, to ensure non-blocking behavior and efficient performance.. |
-| **Call Stack** | Executes synchronous code in a single thread. |
+| **Call Stack** | Main thread that executes synchronous code. |
 | **Event Queue (Callback Queue)** | Stores callbacks of completed asynchronous operations waiting for execution. |
 | **Microtask Queue** | Executes promises and `process.nextTick()` before the next event loop tick. |
 | **libuv (Thread Pool)** | Handles heavy I/O tasks (file system, DNS, compression) in background threads. |
