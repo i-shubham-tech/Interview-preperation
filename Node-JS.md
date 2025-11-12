@@ -368,7 +368,7 @@ A **callback** is a function passed as an argument to another function, executed
 
 ### 🧩 Promises
 
-A Promise in JavaScript is an object used to handle asynchronous operations. It represents a value that will be available in the future — either the operation succeeds (resolved) or fails (rejected) — allowing cleaner, non-blocking code using .then(), .catch(), and .finally().
+A Promise in JavaScript is an object that represents the eventual completion or failure of an asynchronous operation. It helps manage asynchronous tasks more effectively, avoiding callback hell and making code cleaner and more readable.
 
 #### 🔄 Promise States
 
@@ -382,9 +382,9 @@ A Promise in JavaScript is an object used to handle asynchronous operations. It 
 
 | Function | Description | Example |
 |-----------|--------------|----------|
-| `then()` | Executes after successful completion | `getData().then(data => console.log(data));` |
-| `catch()` | Executes after operation failed Handles errors | `.catch(err => console.error(err));` |
-| `finally()` | Executes regardless of outcome | `.finally(() => console.log('Done'));` |
+| `then()` |Handles the result when the Promise is fulfilled.| `getData().then(data => console.log(data));` |
+| `catch()` | Handles errors if the Promise is rejected. | `.catch(err => console.error(err));` |
+| `finally()` | Executes code regardless of outcome | `.finally(() => console.log('Done'));` |
 
 #### 💡 Example
 
@@ -471,6 +471,8 @@ app.listen(3000, () => console.log('Server running on port 3000'));
 
 Middleware in Express.js are functions that run between the client’s request and the server’s response. 
 They can **modify**, **log**, **validate**, or **handle** requests then pass control to the next function using next()..
+
+> middleware are uses in express using .use() function 
 
 
 #### 🔍 Types of Middleware
@@ -577,9 +579,9 @@ Express allows integration of various middleware packages to handle tasks like p
 
 A REST API is a way for the client and server to communicate using standard HTTP methods (GET, POST, PUT, DELETE), where each resource is identified by a URL
 Enable
--simple
--stateless
--structured data exchange
+- simple
+- stateless
+- structured data exchange
 
 ### ⚙️ CRUD Operations with HTTP Methods
 
@@ -729,8 +731,8 @@ app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 
 ### 🧩 Role-Based Access Control (RBAC)
 
-**Role-Based Access Control (RBAC)** is a security model that allow system access permisson based on a user's **role** (e.g., admin, editor, user).  
-Each role has specific **permissions** that define what actions it can perform.
+**Role-Based Access Control (RBAC)**  is a security mechanism that restricts system access based on a user’s role within an organization.
+<br>Instead of assigning permissions directly to each user, permissions are assigned to roles, and users are then assigned to those roles — ensuring easier management, consistency, and security.
 
 ### 🔑 Key Concepts
 
