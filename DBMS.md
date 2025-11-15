@@ -12,8 +12,8 @@
    - 1.7 [Constraints](#constraints)
    - 1.8 [Normalization (1NF, 2NF, and 3NF)](#18--normalization-1nf-2nf-and-3nf)
    - 1.9 [Denormalization](#19-denormalization)
-   - 1.10 [Transaction](#transaction)
-   - 1.11 [ACID Properties](#acid-properties)
+   - 1.10 [Transaction](#110-transaction)
+   - 1.11 [ACID Properties](#111-acid-properties-of-a-transaction)
    - 1.12 [DBMS vs RDBMS](#dbms-vs-rdbms)
    - 1.13 [SQL vs NoSQL](#sql-vs-nosql)
 2. [SQL](#2-sql)
@@ -262,5 +262,56 @@ To fetch Student + Department name → Requires JOIN.
 
 ---
 
+## 1.10 Transaction
+
+### 📌 What is Transaction?
+A transaction is a small unit of work in a database that performs one complete task.
+Either the whole task happens, or none of it happens.
+
+### Why Transactions Are Important?
+
+- Maintain data integrity
+- Prevent data loss
+- Ensure consistent results in multi-user environments
+
+### Example
+
+```
+Suppose you send ₹500 to your friend:
+This involves two steps:
+- Money deducted from your account
+- Money added to your friend's account
+These two steps together = one transaction.
+
+If any step fails → the whole transaction is cancelled (rolled back).
+```
+---
+## 1.11 ACID Properties of a Transaction
+ACID properties guarantee that a transaction is processed reliably.
+
+### 1. **Atomicity**
+- A transaction is **all-or-nothing**.  
+- If any part fails, the entire transaction is rolled back.
+
+### 2. **Consistency**
+- A transaction brings the database from one **valid state** to another valid state.  
+- No rules or constraints are violated.
+
+### 3. **Isolation**
+- Transactions should execute **independently**, without interfering with each other.  
+- Results must appear as if transactions were run one-by-one.
+
+### 4. **Durability**
+- Once a transaction is committed, changes are **permanent** even in case of system failure.
+
+
+## ✔️ Example of a Transaction in SQL
+```sql
+BEGIN TRANSACTION;
+
+UPDATE Account SET Balance = Balance - 500 WHERE AccNo = 101;
+UPDATE Account SET Balance = Balance + 500 WHERE AccNo = 202;
+
+COMMIT;
 
 
