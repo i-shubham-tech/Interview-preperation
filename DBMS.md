@@ -10,7 +10,7 @@
    - 1.5 [Schema vs Instance](#schema-vs-instance)
    - 1.6 [Keys in DBMS](#keys-in-dbms)
    - 1.7 [Constraints](#constraints)
-   - 1.8 [Normalization (1NF, 2NF, and 3NF)](#normalization-1nf-2nf-and-3nf)
+   - 1.8 [Normalization (1NF, 2NF, and 3NF)](#18--normalization-1nf-2nf-and-3nf)
    - 1.9 [Denormalization](#denormalization)
    - 1.10 [Transaction](#transaction)
    - 1.11 [ACID Properties](#acid-properties)
@@ -129,6 +129,101 @@ A **constraint** is a rule applied to table data to **ensure accuracy, validity,
 | **FOREIGN KEY** | Links one table to another. | FOREIGN KEY(Dept_ID) REFERENCES Department(Dept_ID) |
 | **CHECK** | Ensures values meet a specific condition. | CHECK(Age >= 18) |
 | **DEFAULT** | Assigns a default value if none provided. | DEFAULT 'India' |
+
+---
+
+## 1.8  Normalization (1NF, 2NF, and 3NF)
+
+### 📌 What is Normalization?
+Normalization is a process of organizing data in a database to:
+- Reduce redundancy (duplicate data)
+- Improve data integrity(accurate and consistent)
+- Ensure logical data dependencies
+
+### 🔹 1NF – First Normal Form
+**Rule:**  
+- Each column attribute should contain **atomic (indivisible)** values (no attribute have multivalue).
+- 
+**Example (Not in 1NF):**
+| Student | Phone           |
+|---------|----------------|
+| Rahul   | 9876, 9123     |
+
+❌ Phone contains multiple values.
+
+**Corrected (1NF):**
+| Student | Phone |
+|---------|--------|
+| Rahul   | 9876   |
+| Rahul   | 9123   |
+
+
+### 🔹 2NF – Second Normal Form  
+**Rules:**  
+- Must be in **1NF**  
+- There should not be **partial dependency** i.e (If a table has a composite primary key then every non-key attribute must depend on the entire key, not just one part of it.
+  
+**Example (Not in 2NF):**
+Composite Key → (StudentID, CourseID)
+
+| StudentID | CourseID | StudentName |
+|------------|----------|--------------|
+| 1          | 101      | Rahul        |
+| 1          | 102      | Rahul        |
+| 2          | 101      | Harsh        |
+
+❌ StudentName depends only on StudentID (part of the key)
+
+**Corrected (2NF):**
+**Student Table**
+| StudentID | StudentName |
+|-----------|-------------|
+| 1         | Rahul       |
+| 2         | Harsh       |
+
+**Enrollment Table**
+| StudentID | CourseID |
+|-----------|-----------|
+| 1         | 101       |
+| 1         | 102       |
+| 2         | 101       |
+
+
+### 🔹 3NF – Third Normal Form  
+**Rules:**  
+- Must be in **2NF**  
+- There should not be **transitive dependency** (i.e No non-key column depends on another non-key column.)
+
+**Example (Not in 3NF):**
+| StudentID | DeptID | DeptName |
+|------------|---------|-----------|
+| 1          | D1      | Computer  |
+| 2          | D1      | Computer  |
+| 3          | D2      | Electronid  |
+
+❌ StudentID → DeptID  → DeptName (departent id depand on student id and dep  name depand on dep id)
+
+**Corrected (3NF):**
+
+**Student Table**
+| StudentID | DeptID |
+|------------|---------|
+| 1          | D1      |
+| 2          | D1      |
+| 3          | D2      |
+
+**Department Table**
+| DeptID | DeptName |
+|---------|-----------|
+| D1      | Computer |
+| D2      | Electronics |
+
+### 📌 Summary Table  
+| Normal Form | Removes | Rule |
+|--------------|----------|-------|
+| **1NF** | Multivalue attritbute | Atomic values only |
+| **2NF** | Partial dependency | Full dependency on whole key |
+| **3NF** | Transitive dependency | Non-key attributes depend only on key |
 
 ---
 
