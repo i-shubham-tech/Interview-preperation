@@ -11,7 +11,7 @@
    - 1.6 [Keys in DBMS](#keys-in-dbms)
    - 1.7 [Constraints](#constraints)
    - 1.8 [Normalization (1NF, 2NF, and 3NF)](#18--normalization-1nf-2nf-and-3nf)
-   - 1.9 [Denormalization](#denormalization)
+   - 1.9 [Denormalization](#19-denormalization)
    - 1.10 [Transaction](#transaction)
    - 1.11 [ACID Properties](#acid-properties)
    - 1.12 [DBMS vs RDBMS](#dbms-vs-rdbms)
@@ -227,6 +227,40 @@ Composite Key → (StudentID, CourseID)
 
 ---
 
+## 1.9 Denormalization
+
+### 📌 What is Denormalization?
+Denormalization is the process of **intentionally combining normalized tables** to improve **read performance**.  
+it is done 
+- To improve read performance
+- To reduce complex joins
+- To make queries faster in large databases
+
+### 🛠️ Example
+**Normalized Tables (3NF):**
+
+**Student Table**
+| StudentID | DeptID |
+|-----------|---------|
+| 1         | D1      |
+
+**Department Table**
+| DeptID | DeptName |
+|--------|-----------|
+| D1     | Computer |
+
+To fetch Student + Department name → Requires JOIN.
+
+**Denormalized Table:**
+
+| StudentID | DeptID | DeptName |
+|-----------|---------|-----------|
+| 1         | D1      | Computer  |
+
+👉 Faster reads, no JOIN needed  
+❌ But DeptName is stored multiple times → redundancy
+
+---
 
 
 
