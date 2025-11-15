@@ -287,19 +287,22 @@ If any step fails → the whole transaction is cancelled (rolled back).
 ```
 ---
 ## 1.11 ACID Properties of a Transaction
-ACID properties guarantee that a transaction is processed reliably.
+ACID properties makes sure a transaction is safe, correct, and reliable.
 
 ### 1. **Atomicity**
 - A transaction is **all-or-nothing**.  
 - If any part fails, the entire transaction is rolled back.
 
 ### 2. **Consistency**
-- A transaction brings the database from one **valid state** to another valid state.  
-- No rules or constraints are violated.
+- Consistency mean  Database must always remain valid.  
+- It should follow all rules, constraints, and data integrity conditions before and after a transaction..
+- Example : Negative Balance Not Allowed
+
 
 ### 3. **Isolation**
-- Transactions should execute **independently**, without interfering with each other.  
-- Results must appear as if transactions were run one-by-one.
+- Isolation ensures that even if multiple transactions run at the same time, they do not affect each other.
+- Each transaction behaves as if it is running alone until it is completed.
+
 
 ### 4. **Durability**
 - Once a transaction is committed, changes are **permanent** even in case of system failure.
