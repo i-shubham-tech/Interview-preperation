@@ -14,8 +14,8 @@
    - 1.9 [Denormalization](#19-denormalization)
    - 1.10 [Transaction](#110-transaction)
    - 1.11 [ACID Properties](#111-acid-properties-of-a-transaction)
-   - 1.12 [DBMS vs RDBMS](#dbms-vs-rdbms)
-   - 1.13 [SQL vs NoSQL](#sql-vs-nosql)
+   - 1.12 [DBMS vs RDBMS](#112-dbms-vs-rdbms)
+   - 1.13 [SQL vs NoSQL](#113-sql-vs-nosql)
 2. [SQL](#2-sql)
    - [Overview](#sql)
    - [Commands (DDL, DML, DCL, TCL)](#sql-commands)
@@ -265,8 +265,7 @@ To fetch Student + Department name → Requires JOIN.
 ## 1.10 Transaction
 
 ### 📌 What is Transaction?
-A transaction is a small unit of work in a database that performs one complete task.
-Either the whole task happens, or none of it happens.
+A transaction is a small unit of work in a database that performs one complete task where either the whole task happens, or none of it happens.
 
 ### Why Transactions Are Important?
 
@@ -294,7 +293,7 @@ ACID properties makes sure a transaction is safe, correct, and reliable.
 - If any part fails, the entire transaction is rolled back.
 
 ### 2. **Consistency**
-- Consistency mean  Database must always remain valid.  
+- Consistency mean database must always remain in valid State.  
 - It should follow all rules, constraints, and data integrity conditions before and after a transaction..
 - Example : Negative Balance Not Allowed
 
@@ -316,5 +315,27 @@ UPDATE Account SET Balance = Balance - 500 WHERE AccNo = 101;
 UPDATE Account SET Balance = Balance + 500 WHERE AccNo = 202;
 
 COMMIT;
+```
+---
+## 1.12 DBMS vs RDBMS
+
+| **Feature** | **DBMS** | **RDBMS** |
+|--------------|-----------|-------------|
+| Data Storage | Stores data as files or hierarchical/network formats | Stores data in tables (rows & columns) |
+| Relationships | Doesn’t support relationships between data | Supports relationships using foreign keys |
+| Normalization | Limited or no support | Fully supports normalization |
+| Integrity Constraints | Not strictly enforced | Enforced using PK, FK, and constraints |
+| Multi-user Support | Limited | Strong multi-user support with ACID properties |
+
+---
+## 1.13 SQL vs NoSQL
+
+| **Feature** | **SQL Databases** | **NoSQL Databases** |
+|--------------|--------------------|------------------------|
+| Data Model | Relational (tables) | Non-relational (document, key-value, graph, column) |
+| Schema | Fixed, predefined schema | Schema-less, flexible |
+| Scalability | Vertical scaling | Horizontal scaling |
+| Query Language | Uses SQL | Uses different query mechanisms (JSON, APIs, etc.) |
+| Best For | Complex queries & transactions | Big data, high-speed reads/writes, unstructured data |
 
 
