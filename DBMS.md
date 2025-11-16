@@ -985,8 +985,7 @@ SELECT
 FROM daily_sales;
 ```
 ---
-# MONGO DB
-
+# MongoDB
 
 ## 1. MongoDB Definition & Basic Concepts
 
@@ -1127,6 +1126,98 @@ Aggregation is used for complex data processing like filtering, grouping, sortin
 | `$avg`     | Calculates average.             |
 | `$count`   | Counts documents.               |
 
+---
 
+If you want, I can also create **Indexing, Joins (lookup), CRUD cheatsheet, or Full MongoDB revision sheet** in .md.
 
+---
 
+## 8. Indexing in MongoDB
+
+Indexing improves query performance by creating a special data structure that makes searching faster.
+
+### ➤ Create Index
+
+```js
+// Create index on 'name' field
+ db.users.createIndex({ name: 1 }); // 1 = ascending
+```
+
+### ➤ Compound Index
+
+```js
+// Index on multiple fields
+ db.users.createIndex({ name: 1, age: -1 });
+```
+
+### ➤ Unique Index
+
+```js
+ db.users.createIndex({ email: 1 }, { unique: true });
+```
+
+### ➤ Drop Index
+
+```js
+ db.users.dropIndex({ name: 1 });
+```
+
+### ➤ Types of Indexes
+
+| Index Type             | Explanation               |
+| ---------------------- | ------------------------- |
+| **Single Field Index** | Index on one field        |
+| **Compound Index**     | Index on multiple fields  |
+| **Unique Index**       | Prevents duplicate values |
+| **Text Index**         | For full-text search      |
+| **Hashed Index**       | Used for sharding         |
+
+---
+
+## 9. Lookup (Joins in MongoDB)
+
+`$lookup` is used to join two collections (similar to LEFT JOIN in SQL).
+
+### ➤ Basic Lookup Example
+
+```js
+ db.orders.aggregate([
+   {
+     $lookup: {
+       from: "users",       // collection to join
+       localField: "userId", // field in orders
+       foreignField: "_id",  // field in users
+       as: "userDetails"     // output array
+     }
+   }
+ ]);
+```
+
+### ➤ Unwind Joined Array
+
+```js
+ db.orders.aggregate([
+   { $lookup: { from: "users", localField: "userId", foreignField: "_id", as: "userDetails" } },
+   { $unwind: "$userDetails" }
+ ]);
+```
+
+### ➤ Lookup with Pipeline (Advanced Join)
+
+```js
+ db.orders.aggregate([
+   {
+     $lookup: {
+       from: "users",
+       let: { uid: "$userId" },
+       pipeline: [
+         { $match: { $expr: { $eq: ["$_id", "$$uid"] } } },
+         { $project: { name: 1, city: 1 } }
+       ],
+       as: "userData"
+     }
+   }
+ ]);
+```
+
+---
