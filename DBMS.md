@@ -19,11 +19,19 @@
 2. [SQL](#2-sql)
    - [Overview](#sql)
    - [Commands (DDL, DML, DCL, TCL)](#sql-commands)
-   - [Joins](#joins)
-   - [Subqueries](#subqueries)
-   - [Indexes and Views](#indexes-and-views)
+   - - DDL
+     - DML
+     - DQL
+     - DCL
+     - TCL
+   - [Condition Clause](#sql-commands)
+   - [Order By](#sql-commands)
+   - [Group By](#sql-commands)
    - [Aggregate Functions](#aggregate-functions)
-
+   - [Subqueries](#subqueries)
+   - [Joins](#joins)
+   - [Indexes and Views](#indexes-and-views)
+  
 3. [MONGODB](#3-mongodb)
    - [Overview](#mongodb)
    - [Collections and Documents](#collections-and-documents)
@@ -337,5 +345,645 @@ COMMIT;
 | Scalability | Vertical scaling | Horizontal scaling |
 | Query Language | Uses SQL | Uses different query mechanisms (JSON, APIs, etc.) |
 | Best For | Complex queries & transactions | Big data, high-speed reads/writes, unstructured data |
+
+---
+# SQL
+
+## 1️⃣ What is SQL?
+**SQL (Structured Query Language)** is a standard language used to store, retrieve, manage, and manipulate data in relational databases.
+Common SQL databases: **MySQL, PostgreSQL, Oracle, SQL Server**
+
+---
+
+## 2️⃣ Types of SQL Commands
+SQL commands are divided into the following categories:
+
+- DDL – Data Definition Language
+- DML – Data Manipulation Language
+- DQL – Data Query Language
+- DCL – Data Control Language
+- TCL – Transaction Control Language
+
+---
+
+## DDL – Data Definition Language
+Used to define or modify database structure.
+- `CREATE`
+- `ALTER`
+- `DROP`
+- `TRUNCATE`
+
+### 1️⃣ Create
+
+####  Definition
+`CREATE` is used to **create** a new database object such as a table, database, view, or index.
+
+#### Syntax
+```sql
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+);
+```
+#### Example
+```sql
+CREATE TABLE Student (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+);
+```
+
+### 2️⃣ ALTER
+
+#### Definition
+`ALTER` is used to **modify an existing table structure**, such as adding, deleting, or changing columns.
+
+#### Syntax
+```sql
+ALTER TABLE table_name
+ADD/MODIFY/DROP column_name datatype;
+
+```
+#### Example
+```sql
+ALTER TABLE Student
+ADD email VARCHAR(100);
+
+```
+
+### 3️⃣ DROP
+
+#### Definition
+`DROP` is used to **permanently delete** a database object such as a table, database, view, or index.  
+This action removes both **structure and data**.
+
+#### Syntax
+```sql
+DROP TABLE table_name;
+```
+#### Example
+```sql
+DROP TABLE Student;
+```
+
+### 4️⃣ TRUNCATE
+
+#### Definition
+`TRUNCATE` is used to **remove all rows** from a table quickly while keeping the table structure intact.  
+It cannot be rolled back in many databases.
+
+#### Syntax
+```sql
+TRUNCATE TABLE table_name;
+```
+
+#### Example
+```sql
+TRUNCATE TABLE Student;
+```
+
+---
+  
+
+## DML – Data Manipulation Language
+Used to manipulate data inside tables.
+- `INSERT`
+- `UPDATE`
+- `DELETE`
+
+### 1️⃣ INSERT
+
+#### Definition
+`INSERT` is used to **add new records (rows)** into a table.
+
+#### Syntax
+```sql
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+```
+
+#### Example
+```sql
+INSERT INTO Student (id, name, age)
+VALUES (1, 'Rahul', 20);
+```
+
+### 2️⃣ UPDATE
+
+#### Definition
+`UPDATE` is used to **modify existing records** in a table.
+
+#### Syntax
+```sql
+UPDATE table_name
+SET column_name = value
+WHERE condition;
+```
+
+#### Example
+```sql
+UPDATE Student
+SET age = 21
+WHERE id = 1;
+```
+
+### 3️⃣ DELETE
+
+#### Definition
+`DELETE` is used to **remove specific rows** from a table based on a condition.
+
+#### Syntax
+```sql
+DELETE FROM table_name
+WHERE condition;
+```
+#### Example
+```sql
+DELETE FROM Student
+WHERE id = 1;
+```
+---
+
+## 🔹 DQL – Data Query Language
+Used to fetch data.
+- `SELECT`
+
+### SELECT Command
+
+#### Definition
+`SELECT` is used to **retrieve/read data** from one or more tables in a database.
+
+#### Syntax
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+#### example
+```sql
+SELECT name, salary
+FROM employees
+WHERE salary > 50000;
+```
+---
+
+
+### 🔹DCL - Data Control Language
+Controls permissions.
+- `GRANT`
+- `REVOKE`
+
+### Common Privileges
+
+| Privilege        | Meaning                  |
+|------------------|---------------------------|
+| `SELECT`         | Read data                 |
+| `INSERT`         | Add new data              |
+| `UPDATE`         | Modify existing data      |
+| `DELETE`         | Remove data               |
+| `ALL PRIVILEGES` | Gives full access         |
+
+### GRANT Command
+
+#### Definition
+`GRANT` is used to **give permissions** to a user or role so they can perform specific actions on a database object (table, view, schema, etc.).
+
+#### Syntax
+```sql
+GRANT privilege_name
+ON object_name
+TO user_name;
+```
+
+#### example
+```sql
+➤ Give Particular permission on a table
+GRANT SELECT ON employees TO user1;
+
+➤ Give multiple permissions
+GRANT SELECT, INSERT, UPDATE ON products TO user1;
+
+➤ Grant ALL permissions
+GRANT ALL PRIVILEGES ON sales TO admin_user;
+
+➤ Grant privileges to a role
+GRANT SELECT ON employees TO hr_role;
+
+```
+
+### REVOKE Command
+
+#### Definition
+`REVOKE` is used to **remove permissions** that were previously granted to a user or role.
+
+
+#### Syntax
+```sql
+REVOKE privilege_name
+ON object_name
+FROM user_name;
+```
+
+#### example
+
+```sql
+Revoke SELECT permission
+REVOKE SELECT ON employees FROM user1;
+
+➤ Revoke multiple permissions
+REVOKE SELECT, INSERT, UPDATE ON products FROM user1;
+
+➤ Revoke ALL permissions
+REVOKE ALL PRIVILEGES ON sales FROM admin_user;
+
+➤ Revoke permission from a role
+REVOKE SELECT ON employees FROM hr_role;
+```
+---
+
+## TCL – Transaction Control Language
+Manages transactions.
+- `COMMIT`
+- `ROLLBACK`
+- `SAVEPOINT`
+
+
+### COMMIT Command
+
+#### Definition
+`COMMIT` is used to **save all changes permanently** in the database.
+
+#### Syntax
+```sql
+COMMIT;
+```
+
+#### example
+
+```sql
+UPDATE employees SET salary = salary + 5000;
+COMMIT;   -- changes are permanently saved
+```
+
+### ROLLBACK Command
+
+#### Definition
+`ROLLBACK` is used to undo changes made in the current transaction (before COMMIT).
+
+#### Syntax
+```sql
+ROLLBACK;
+```
+
+#### example
+
+```sql
+DELETE FROM employees WHERE id = 5;
+ROLLBACK;   -- delete operation undone
+```
+
+### SAVEPOINT Command
+
+#### Definition
+`SAVEPOINT` is used to **set a checkpoint** within a transaction, allowing you to roll back only part of the transaction instead of the entire operation.
+
+#### Syntax
+```sql
+SAVEPOINT savepoint_name;
+```
+
+#### example
+
+```sql
+BEGIN;
+UPDATE employees SET salary = 60000 WHERE id = 1;
+SAVEPOINT sp1;   -- checkpoint created
+UPDATE employees SET salary = 70000 WHERE id = 2;
+ROLLBACK TO sp1;   -- undo second update, first update remains
+COMMIT;   -
+```
+---
+
+## WHERE Clause Condition
+
+| Category                         | Operator / Keyword | Meaning                              |
+|----------------------------------|---------------------|--------------------------------------|
+| **Comparison Operators**         | `=`                 | Equal to                             |
+|                                  | `!=` or `<>`        | Not equal to                         |
+|                                  | `>`                 | Greater than                         |
+|                                  | `<`                 | Less than                            |
+|                                  | `>=`                | Greater than or equal to             |
+|                                  | `<=`                | Less than or equal to                |
+| **Logical Operators**            | `AND`               | Both conditions must be true         |
+|                                  | `OR`                | Either condition can be true         |
+|                                  | `NOT`               | Negates a condition                  |
+| **Range / Set / Pattern**        | `BETWEEN … AND …`   | Value lies within a range            |
+|                                  | `IN ( … )`          | Matches any value from a set         |
+|                                  | `NOT IN ( … )`      | Excludes values from a set           |
+|                                  | `LIKE`              | Pattern matching                     |
+|                                  | `NOT LIKE`          | Excludes pattern matching            |
+| **NULL Operators**               | `IS NULL`           | Value is NULL                        |
+|                                  | `IS NOT NULL`       | Value is not NULL                    |
+
+### Example
+
+```example
+-- Fetch all columns
+SELECT * FROM employees;
+
+-- Fetch selected columns
+SELECT name, salary FROM employees;
+
+-- WHERE with comparison
+SELECT name FROM employees WHERE salary > 50000;
+
+-- WHERE with =
+SELECT * FROM students WHERE city = 'Mumbai';
+
+-- WHERE with != / <>
+SELECT * FROM students WHERE grade <> 'A';
+
+-- AND operator
+SELECT * FROM employees WHERE department = 'IT' AND salary > 60000;
+
+-- OR operator
+SELECT * FROM employees WHERE department = 'IT' OR department = 'HR';
+
+-- NOT operator
+SELECT * FROM employees WHERE NOT department = 'Sales';
+
+-- BETWEEN
+SELECT * FROM products WHERE price BETWEEN 100 AND 500;
+
+-- IN
+SELECT * FROM employees WHERE department IN ('IT', 'HR', 'Finance');
+
+-- NOT IN
+SELECT * FROM employees WHERE department NOT IN ('Sales', 'Support');
+
+-- LIKE (starts with)
+SELECT * FROM customers WHERE name LIKE 'A%';
+
+-- LIKE (ends with)
+SELECT * FROM customers WHERE name LIKE '%n';
+
+-- LIKE (contains)
+SELECT * FROM customers WHERE name LIKE '%ar%';
+
+-- IS NULL
+SELECT * FROM orders WHERE discount IS NULL;
+
+-- IS NOT NULL
+SELECT * FROM orders WHERE discount IS NOT NULL;
+
+```
+---
+
+## ORDER BY
+
+### Definition
+`ORDER BY` is used to **sort the result** of a query in **ascending (ASC)** or **descending (DESC)** order.
+
+###  Syntax
+```sql
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column_name ASC | DESC;
+```
+
+### Examples
+
+```
+➤ Sort in ascending order (default)
+SELECT name, salary
+FROM employees
+ORDER BY salary;
+
+➤ Sort in descending order
+SELECT name, salary
+FROM employees
+ORDER BY salary DESC;
+
+➤ Sort by multiple columns
+SELECT name, department, salary
+FROM employees
+ORDER BY department ASC, salary DESC;
+```
+---
+
+## Aggregate Functions in SQL
+
+### Definition
+Aggregate functions perform **calculations on a group of rows** and return a **single value** (often used with GROUP BY).
+
+
+### Common Aggregate Functions
+
+| Function | Meaning |
+|----------|---------|
+| `COUNT()` | Returns the number of rows |
+| `SUM()` | Returns the total sum of a numeric column |
+| `AVG()` | Returns the average value |
+| `MAX()` | Returns the maximum value |
+| `MIN()` | Returns the minimum value |
+
+
+### ✅ 3. Examples
+
+```sql
+
+### ➤ COUNT()
+SELECT COUNT(*) AS total_employees
+FROM employees;
+
+➤ SUM()
+SELECT SUM(salary) AS total_salary
+FROM employees;
+
+➤ AVG()
+SELECT AVG(salary) AS average_salary
+FROM employees;
+
+➤ MAX()
+SELECT MAX(salary) AS highest_salary
+FROM employees;
+
+➤ MIN()
+SELECT MIN(salary) AS lowest_salary
+FROM employees;
+```
+---
+
+## GROUP BY
+
+###  Definition
+`GROUP BY` is used to **group rows** that have the same values in specified columns and is usually combined with **aggregate functions** like COUNT, SUM, AVG, MAX, MIN.
+
+###  Syntax
+```sql
+SELECT column_name, aggregate_function(column)
+FROM table_name
+GROUP BY column_name;
+```
+
+### Example
+
+```
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department;
+```
+---
+## HAVING Clause
+
+### ✅ Definition
+The **HAVING** clause is used to filter groups after the `GROUP BY` operation.  
+It is mainly used with aggregate functions like **SUM**, **COUNT**, **AVG**, **MAX**, and **MIN**.
+
+> `WHERE` filters **rows before grouping**
+> `HAVING` filters **groups after grouping**
+
+### 🧠 Syntax
+```sql
+SELECT column, AGG_FUNC(column)
+FROM table_name
+GROUP BY column
+HAVING condition;
+```
+### Example
+```
+SELECT department, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department
+HAVING SUM(salary) > 100000;
+```
+
+## LIMIT
+
+### Definition
+`LIMIT` is used to **restrict the number of rows** returned by a query.
+
+### Syntax
+```sql
+SELECT column1, column2
+FROM table_name
+LIMIT number;
+```
+### Example
+```
+➤ Fetch first 5 rows
+SELECT * 
+FROM employees
+LIMIT 5;
+```
+
+## 🪟 Window Functions (SQL)
+
+### ✅ Definition
+A **Window Function** performs a calculation across a set of rows that are related to the current row **without grouping the rows**.  
+It works like an “advanced analytical function” used for ranking, running totals, moving averages, etc.
+
+| Function       | Meaning                              |
+|----------------|----------------------------------------|
+| `ROW_NUMBER()` | Gives row number within each partition |
+| `RANK()`       | Assigns rank with gaps                 |
+| `DENSE_RANK()` | Assigns rank without gaps              |
+| `SUM()`        | Running total                          |
+| `AVG()`        | Moving average                         |
+| `LAG()`        | Value from previous row                |
+| `LEAD()`       | Value from next row                    |
+
+### 🔧 Syntax
+```sql
+FUNCTION_NAME(column) OVER (
+    PARTITION BY column
+    ORDER BY column
+)
+```
+
+### 1️⃣ ROW_NUMBER()
+
+Purpose: Gives sequential row number within each partition.
+```
+SELECT 
+    name,
+    department,
+    salary,
+    ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS row_num
+FROM employees;
+```
+
+### 2️⃣ RANK()
+
+Purpose: Assigns rank with gaps when values tie.
+
+```SELECT
+    name,
+    salary,
+    RANK() OVER (ORDER BY salary DESC) AS salary_rank
+FROM employees;
+```
+
+### 3️⃣ DENSE_RANK()
+
+Purpose: Assigns rank without gaps for ties.
+
+```SELECT
+    name,
+    salary,
+    DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_dense_rank
+FROM employees;
+```
+
+### 4️⃣ SUM() — Running Total
+
+Purpose: Running total of values.
+```
+SELECT 
+    order_id,
+    amount,
+    SUM(amount) OVER (ORDER BY order_id) AS running_total
+FROM orders;
+```
+
+### 5️⃣ AVG() — Moving Average
+
+Purpose: Average calculated over a sliding window.
+```
+SELECT
+    date,
+    sales,
+    AVG(sales) OVER (ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg
+FROM daily_sales;
+```
+
+
+### 6️⃣ LAG()
+
+Purpose: Value from previous row.
+```
+SELECT
+    date,
+    sales,
+    LAG(sales, 1) OVER (ORDER BY date) AS previous_day_sales
+FROM daily_sales;
+```
+
+### 7️⃣ LEAD()
+
+Purpose: Value from next row.
+
+```
+SELECT
+    date,
+    sales,
+    LEAD(sales, 1) OVER (ORDER BY date) AS next_day_sales
+FROM daily_sales;
+```
+
+
 
 
