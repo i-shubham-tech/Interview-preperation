@@ -983,6 +983,148 @@ SELECT
     LEAD(sales, 1) OVER (ORDER BY date) AS next_day_sales
 FROM daily_sales;
 ```
+---
+# MONGO DB
+
+
+## 1. MongoDB Definition & Basic Concepts
+
+| Concept         | Explanation                                                                           |
+| --------------- | ------------------------------------------------------------------------------------- |
+| **MongoDB**     | A NoSQL, document-oriented database that stores data in flexible JSON-like documents. |
+| **Database**    | A container for collections.                                                          |
+| **Collection**  | A group of related documents (like a table).                                          |
+| **Document**    | A record in MongoDB stored in BSON (Binary JSON) format.                              |
+| **Field**       | A key-value pair inside a document.                                                   |
+| **_id**         | A unique identifier automatically created for each document.                          |
+| **Schema-less** | No fixed structure; each document can have different fields.                          |
+| **NoSQL**       | Non-relational, highly scalable database.                                             |
+
+---
+
+## 2. Insert Document
+
+### ➤ `insertOne()`
+
+```js
+// Insert a single document
+ db.users.insertOne({ name: "Shubham", age: 22, city: "Delhi" });
+```
+
+### ➤ `insertMany()`
+
+```js
+// Insert multiple documents
+ db.users.insertMany([
+   { name: "Aman", age: 25 },
+   { name: "Riya", age: 23 }
+ ]);
+```
+
+---
+
+## 3. Update Document
+
+### ➤ `updateOne()`
+
+```js
+// Update first matching document
+ db.users.updateOne(
+   { name: "Shubham" },
+   { $set: { city: "Mumbai" } }
+ );
+```
+
+### ➤ `updateMany()`
+
+```js
+// Update all matching documents
+ db.users.updateMany(
+   { age: { $gt: 20 } },
+   { $set: { active: true } }
+ );
+```
+
+---
+
+## 4. Delete Document
+
+### ➤ `deleteOne()`
+
+```js
+// Delete first matching
+ db.users.deleteOne({ name: "Aman" });
+```
+
+### ➤ `deleteMany()`
+
+```js
+// Delete multiple
+ db.users.deleteMany({ age: { $lt: 18 } });
+```
+
+---
+
+## 5. Find Document
+
+### ➤ `findOne()`
+
+```js
+ db.users.findOne({ name: "Shubham" });
+```
+
+### ➤ `find()`
+
+```js
+// Find all documents
+ db.users.find();
+
+// With condition
+ db.users.find({ city: "Delhi" });
+```
+
+---
+
+## 6. Comparison Operators
+
+| Operator | Meaning               | Example                                  |
+| -------- | --------------------- | ---------------------------------------- |
+| `$eq`    | Equal to              | `{ age: { $eq: 25 } }`                   |
+| `$ne`    | Not equal             | `{ age: { $ne: 25 } }`                   |
+| `$gt`    | Greater than          | `{ age: { $gt: 18 } }`                   |
+| `$gte`   | Greater than or equal | `{ age: { $gte: 18 } }`                  |
+| `$lt`    | Less than             | `{ age: { $lt: 30 } }`                   |
+| `$lte`   | Less than or equal    | `{ age: { $lte: 30 } }`                  |
+| `$in`    | Matches any in array  | `{ city: { $in: ["Delhi", "Mumbai"] } }` |
+| `$nin`   | Not in array          | `{ city: { $nin: ["Delhi"] } }`          |
+
+---
+
+## 7. MongoDB Aggregation (Basics)
+
+Aggregation is used for complex data processing like filtering, grouping, sorting, summing, etc.
+
+### ➤ Simple Aggregation Pipeline
+
+```js
+ db.users.aggregate([
+   { $match: { city: "Delhi" } },
+   { $group: { _id: "$city", totalUsers: { $sum: 1 } } }
+ ]);
+```
+
+### ➤ Common Aggregation Operators
+
+| Operator   | Explanation                     |
+| ---------- | ------------------------------- |
+| `$match`   | Filters documents (like WHERE). |
+| `$group`   | Groups documents by field.      |
+| `$sort`    | Sorts results.                  |
+| `$project` | Selects specific fields.        |
+| `$limit`   | Limits number of documents.     |
+| `$sum`     | Calculates sum.                 |
+| `$avg`     | Calculates average.             |
+| `$count`   | Counts documents.               |
 
 
 
