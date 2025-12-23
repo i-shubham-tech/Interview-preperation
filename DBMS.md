@@ -48,7 +48,7 @@
 ### 🔹 Definition
 
 A **database** is an organized collection of data that store and access electronically.  
-its manage by dbms which ensure integrity ,support query and allow efficient data management and retrival
+its manage by dbms 
 
 ### 🔹 Example
 Imagine a **student database** in a college:
