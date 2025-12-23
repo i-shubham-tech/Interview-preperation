@@ -62,7 +62,7 @@ Here, all student information is stored together — this is a **database**.
 
 ---
 ## 2. DBMS 
-A **Database Management System (DBMS)** is software that helps **store, manage, and retrival  data** efficiently in a database.  
+A **Database Management System (DBMS)** is software that helps **store, manage, and retrival  data** efficiently from database.  
 It acts as an **interface** between the user and the database.
 
 ### 🔹 Example
